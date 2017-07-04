@@ -1,70 +1,69 @@
 function global:ProjectManager{
 <#-----------------------------------------------------------------------------
-yOverViewz
+ã€OverViewã€‘
 -----------------------------------------------------------------------------#>
 # ProjectManager
 <#-----------------------------------------------------------------------------
-yPreparez
+ã€Prepareã€‘
 -----------------------------------------------------------------------------#>
 param($WorkDir=$BUSINESS_DIR,[Switch]$Auto,[Parameter(ValueFromPipeline)]$Operate=$(
 <#-----------------------------------------------------------------------------
-[1-1. ‘I‘ğƒŠƒXƒg’è‹`]
+[1-1. é¸æŠãƒªã‚¹ãƒˆå®šç¾©]
 -----------------------------------------------------------------------------#>
- "3-1-1. ƒiƒrƒQ[ƒg‚µ‚Ä‚à‚ç‚¤",
- "3-3-1. ProjectCode‚ğ“o˜^‚·‚é",
- "3-3-2. ProjectList‚ğƒƒ“ƒeƒiƒ“ƒX‚·‚é",
- "3-3-3. Project‚Éæ‚èŠ|‚©‚é"|
+ "3-1-1. ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ã¦ã‚‚ã‚‰ã†",
+ "3-3-1. ProjectCodeã‚’ç™»éŒ²ã™ã‚‹",
+ "3-3-2. ProjectListã‚’ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ã™ã‚‹",
+ "3-3-3. Projectã«å–ã‚Šæ›ã‹ã‚‹"|
 
-ogv -PassThru -Title (($WorkDir) + "ProjectManager Ÿ‚É‰½‚ğ‚µ‚Ü‚·‚©H")),
+ogv -PassThru -Title (($WorkDir) + "ProjectManager æ¬¡ã«ä½•ã‚’ã—ã¾ã™ã‹ï¼Ÿ")),
 <#-----------------------------------------------------------------------------
-[1-2. •Ï”’è‹`]
+[1-2. å¤‰æ•°å®šç¾©]
 -----------------------------------------------------------------------------#>
  $NewProjectList=$(if(-not(Test-Path $BUSINESS_DIR/ProjectList.csv)){Set-Content $BUSINESS_DIR/ProjectList.csv "ProjectCode,ProjectNo,ProjectStart,ProjectEnd,isOpen"}),
  
 <#-----------------------------------------------------------------------------
-yGetSrcz
+ã€GetSrcã€‘
 -----------------------------------------------------------------------------#>
 <#-----------------------------------------------------------------------------
-[2-1. “Ç‚İ‚İ‚½‚¢List“Ç‚İ‚İ]
+[2-1. èª­ã¿è¾¼ã¿ãŸã„Listèª­ã¿è¾¼ã¿]
 -----------------------------------------------------------------------------#>
  $ProjectList=$(ipcsv ./ProjectList.csv -Encoding Default)
  
 )begin{pushd .;cd $WorkDir;(date).ToString()+" :"+$ProjectCode+">"+$WorkCode+">"+(Split-Path -Leaf $PSCommandPath)+" Ready." >> $Log}process{switch($Operate){
 <#-----------------------------------------------------------------------------
-y3. Customz
+ã€3. Customã€‘
 -----------------------------------------------------------------------------#>
 <#---------------------------------------------------------------------------#>
-"3-1-1. ƒiƒrƒQ[ƒg‚µ‚Ä‚à‚ç‚¤"{
+"3-1-1. ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ã¦ã‚‚ã‚‰ã†"{
 <#---------------------------------------------------------------------------#>
-"Project‚ÍAH’ö–ˆ‚É•ª‚¯‚é‚Ì‚ª—Ç‚¢‚Å‚·I"
+"Projectã¯ã€å·¥ç¨‹æ¯ã«åˆ†ã‘ã‚‹ã®ãŒè‰¯ã„ã§ã™ï¼"
 
 <#---------------------------------------------------------------------------#>
-}"3-3-1. ProjectCode‚ğ“o˜^‚·‚é"{
+}"3-3-1. ProjectCodeã‚’ç™»éŒ²ã™ã‚‹"{
 <#---------------------------------------------------------------------------#>
-$ProjectCode = (Read-Host "V‚µ‚¢ƒvƒƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·BProjectCode‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B")
+$ProjectCode = (Read-Host "æ–°ã—ã„ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚ProjectCodeã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚")
 
 mkdir $ProjectCode
 
 Add-Content ./ProjectList.csv $ProjectCode
 
 <#---------------------------------------------------------------------------#>
-}"3-3-2. ProjectList‚ğƒƒ“ƒeƒiƒ“ƒX‚·‚é"{
+}"3-3-2. ProjectListã‚’ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ã™ã‚‹"{
 <#---------------------------------------------------------------------------#>
-#$excel=New-Object -ComObject Excel.Application;$excel.Visible=$true;$excel.DisplayAlerts=$false;$excel.Workbooks.Open((Convert-path ./ProjectList.csv))|Out-Null
 (New-Object -ComObject Excel.Application)|%{$_.Visible=$true;$_.DisplayAlerts=$false;$_.Workbooks.Open((Convert-Path ./ProjectList.csv))}|Out-Null
 
 
 <#---------------------------------------------------------------------------#>
-}"3-3-3. Project‚Éæ‚èŠ|‚©‚é"{
+}"3-3-3. Projectã«å–ã‚Šæ›ã‹ã‚‹"{
 <#---------------------------------------------------------------------------#>
-WorkManager -WorkDir (Join-Path (Convert-Path (ls -dir -name|ogv -PassThru -Title (($WorkDir) + " æ‚èŠ|‚©‚éProject‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢B"))) \)
+WorkManager -WorkDir (Join-Path (Convert-Path (ls -dir -name|ogv -PassThru -Title (($WorkDir) + " å–ã‚Šæ›ã‹ã‚‹Projectã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚"))) \)
 
 <#---------------------------------------------------------------------------#>
 }default{
 <#---------------------------------------------------------------------------#>
-"ƒLƒƒƒ“ƒZƒ‹‚ª‰Ÿ‚³‚ê‚½‚©A‘I‘ğƒƒjƒ…[‚É–³‚¢I"
+"ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒæŠ¼ã•ã‚ŒãŸã‹ã€é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ç„¡ã„ï¼"
 }}
-if((Read-Host "ProjectManager ‚Ü‚¾‘±‚¯‚éHyes/no") -eq "yes"){ProjectManager -WorkDir (Join-Path (Convert-Path .) \)}else{cd ../}
+if((Read-Host "ProjectManager ã¾ã ç¶šã‘ã‚‹ï¼Ÿyes/no") -eq "yes"){ProjectManager -WorkDir (Join-Path (Convert-Path .) \)}else{cd ../}
 }end{(date).ToString() + " :"+$ProjectCode+">"+$WorkCode+">"+(Split-Path -Leaf $PSCommandPath) + " Finished." >> $Log;popd}}
 
 
