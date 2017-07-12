@@ -1,0 +1,10 @@
+DocumentTypeID,Region,DocTypeNo,DocTypeCode,Detail
+B01.WBS,B,01,WBS,各種WBS。
+B02.WorkFlow,B,02,WorkFlow,フロー図とか。
+B03.WorkManual,B,03,WorkManual,手順書。
+B04.SendForClient,B,04,SendForClient,誰かに渡す資料。社内だと申請書類とか、納品物とか。
+B05.RecieveFromClient,B,05,RecieveFromClient,誰かから受け取った資料。発注書とか。
+T01.OutputFromSystem,T,01,OutputFromSystem,システムから出力されたデータ
+T02.InputForSystem,T,02,InputForSystem,システムに取り込んだり入力するデータ
+T03.Spec,T,03,Spec,システムの設計書やテーブル定義書
+T04.Setting,T,04,Setting,システムの設定書やパラメートシート的なやつ。
