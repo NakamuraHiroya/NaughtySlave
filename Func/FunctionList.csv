@@ -1,0 +1,3 @@
+TicketTypeCode,FunctionCode
+CSVを開く,OpenCSVFile
+EXEファイルを実行する,ExeOperator
