@@ -51,7 +51,7 @@ ls $FUNC_DIR*.ps1 -name|%{. $FUNC_DIR$_}
 (New-Object -ComObject Excel.Application).DisplayAlerts=$false
 
 <#-------------------------------------
-[3-2. HOME移動]
+[3-3. HOME移動]
 -------------------------------------#>
 cd $HOME_DIR
 
