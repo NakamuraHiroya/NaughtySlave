@@ -1,44 +1,44 @@
 function global:TicketManager{
 <#-----------------------------------------------------------------------------
-yOverViewz
+ã€OverViewã€‘
 -----------------------------------------------------------------------------#>
 
 <#-----------------------------------------------------------------------------
-yPreparez
+ã€Prepareã€‘
 -----------------------------------------------------------------------------#>
 param($WorkDir=(Join-Path (Convert-Path .) \),[Switch]$Auto,[Parameter(ValueFromPipeline)]$Operate=$(
 <#-----------------------------------------------------------------------------
-[1-1. ‘I‘ğƒŠƒXƒg’è‹`]
+[1-1. é¸æŠãƒªã‚¹ãƒˆå®šç¾©]
 -----------------------------------------------------------------------------#>
- "3-1-1. ƒiƒrƒQ[ƒg‚µ‚Ä‚à‚ç‚¤",
- "3-2-1. •K—v‚ÈSrc‚ğGet‚·‚é",
- "3-3-1. TicketCode‚ğ“o˜^‚·‚é",
- "3-3-2. TicketList‚ğƒƒ“ƒeƒiƒ“ƒX‚·‚é",
- "3-3-3. Ticket‚Éæ‚èŠ|‚©‚é"|
+ "3-1-1. ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ã¦ã‚‚ã‚‰ã†",
+ "3-2-1. å¿…è¦ãªSrcã‚’Getã™ã‚‹",
+ "3-3-1. TicketCodeã‚’ç™»éŒ²ã™ã‚‹",
+ "3-3-2. TicketListã‚’ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ã™ã‚‹",
+ "3-3-3. Ticketã«å–ã‚Šæ›ã‹ã‚‹"|
 
-ogv -PassThru -Title (($WorkDir) + "TicketManager Ÿ‚É‰½‚ğ‚µ‚Ü‚·‚©H")),
+ogv -PassThru -Title (($WorkDir) + "TicketManager æ¬¡ã«ä½•ã‚’ã—ã¾ã™ã‹ï¼Ÿ")),
 <#-----------------------------------------------------------------------------
-[1-2. •Ï”’è‹`]
+[1-2. å¤‰æ•°å®šç¾©]
 -----------------------------------------------------------------------------#>
- $ProjectCode=$(cd $WorkDir;if((Split-Path ../../ -Leaf) -eq "Business"){Split-Path ../ -Leaf}else{"TicketDir‚ÅÀs‚µ‚Ä‰º‚³‚¢"}),
- $WorkCode=$(if((Split-Path ../../ -Leaf) -eq "Business"){Split-Path . -Leaf}else{"TicketDir‚ÅÀs‚µ‚Ä‰º‚³‚¢"}),
+ $ProjectCode=$(cd $WorkDir;if((Split-Path ../../ -Leaf) -eq "Business"){Split-Path ../ -Leaf}else{"TicketDirã§å®Ÿè¡Œã—ã¦ä¸‹ã•ã„"}),
+ $WorkCode=$(if((Split-Path ../../ -Leaf) -eq "Business"){Split-Path . -Leaf}else{"TicketDirã§å®Ÿè¡Œã—ã¦ä¸‹ã•ã„"}),
  $NewTicketList=$(if(-not(Test-Path ./TicketList.csv)){Set-Content ./TicketList.csv "TicketCode,WorkCode,ProjectCode,StartDate,FinDate,isToday"}),
  
 <#-----------------------------------------------------------------------------
-yGetSrcz
+ã€GetSrcã€‘
 -----------------------------------------------------------------------------#>
 <#-----------------------------------------------------------------------------
-[2-1. “Ç‚İ‚İ‚½‚¢List“Ç‚İ‚İ]
+[2-1. èª­ã¿è¾¼ã¿ãŸã„Listèª­ã¿è¾¼ã¿]
 -----------------------------------------------------------------------------#>
  $TicketList=$(ipcsv ./TicketList.csv -Encoding Default),
  $TicketTypeCode=$(ipcsv $FUNC_DIR\FunctionList.csv -Encoding Default)
  
 )begin{pushd .;cd $WorkDir;(date).ToString()+" :"+$ProjectCode+">"+$WorkCode+">"+(Split-Path -Leaf $PSCommandPath)+" Ready." >> $Log}process{switch($Operate){
 <#-----------------------------------------------------------------------------
-y3. Customz
+ã€3. Customã€‘
 -----------------------------------------------------------------------------#>
 <#---------------------------------------------------------------------------#>
-"3-1-1. ƒiƒrƒQ[ƒg‚µ‚Ä‚à‚ç‚¤"{
+"3-1-1. ãƒŠãƒ“ã‚²ãƒ¼ãƒˆã—ã¦ã‚‚ã‚‰ã†"{
 <#---------------------------------------------------------------------------#>
 $TicketList|ft -autosize
 "Project :"+$ProjectCode
@@ -46,33 +46,33 @@ $TicketList|ft -autosize
 $WorkDir
 
 <#---------------------------------------------------------------------------#>
-}"3-2-1. •K—v‚ÈSrc‚ğGet‚·‚é"{
+}"3-2-1. å¿…è¦ãªSrcã‚’Getã™ã‚‹"{
 <#---------------------------------------------------------------------------#>
 
 <#---------------------------------------------------------------------------#>
-}"3-3-1. TicketCode‚ğ“o˜^‚·‚é"{
+}"3-3-1. TicketCodeã‚’ç™»éŒ²ã™ã‚‹"{
 <#---------------------------------------------------------------------------#>
-$TicketCode = (Read-Host $WorkCode "‚ğ’B¬‚·‚éˆ×‚É•K—v‚ÈTicketCode‚ğ‹L“ü‚µ‚Ä‰º‚³‚¢B")
+$TicketCode = (Read-Host $WorkCode "ã‚’é”æˆã™ã‚‹ç‚ºã«å¿…è¦ãªTicketCodeã‚’è¨˜å…¥ã—ã¦ä¸‹ã•ã„ã€‚")
 
-#TicketCode‚Ìƒtƒ@ƒCƒ‹ì¬
-ni ($TicketCode+".ps1") -Type File -Value ($TicketTypeCode|ogv -PassThru -Title (($WorkDir)+"TicketManager ‚Ç‚ñ‚È‚±‚Æ‚ğ‚·‚é‚©‘I‘ğ‚µ‚Ä‰º‚³‚¢B ")).FunctionCode
+#TicketCodeã®ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
+ni ($TicketCode+".ps1") -Type File -Value ($TicketTypeCode|ogv -PassThru -Title (($WorkDir)+"TicketManager ã©ã‚“ãªã“ã¨ã‚’ã™ã‚‹ã‹é¸æŠã—ã¦ä¸‹ã•ã„ã€‚ ")).FunctionCode
 
 Add-Content ./TicketList.csv($TicketCode+","+$WorkCode +","+ $ProjectCode)
 
 <#---------------------------------------------------------------------------#>
-}"3-3-2. TicketListƒƒ“ƒeƒiƒ“ƒX"{
+}"3-3-2. TicketListãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹"{
 <#---------------------------------------------------------------------------#>
 $excel=New-Object -ComObject Excel.Application;$excel.Visible=$true;$excel.DisplayAlerts=$false;$excel.Workbooks.Open((Convert-path ./TicketList.csv))
 
 <#---------------------------------------------------------------------------#>
-}"3-3-3. Ticket‚Éæ‚èŠ|‚©‚é"{
+}"3-3-3. Ticketã«å–ã‚Šæ›ã‹ã‚‹"{
 <#---------------------------------------------------------------------------#>
-Invoke-Expression ("./"+(ls *.ps1 -name -Exclude TicketManager.ps1|ogv -PassThru -Title "Project>Work>TicketManager æ‚èŠ|‚©‚éTicket‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢B"))
+Invoke-Expression ("./"+(ls *.ps1 -name -Exclude TicketManager.ps1|ogv -PassThru -Title "Project>Work>TicketManager å–ã‚Šæ›ã‹ã‚‹Ticketã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚"))
 
 <#---------------------------------------------------------------------------#>
 }default{
 <#---------------------------------------------------------------------------#>
-"ƒLƒƒƒ“ƒZƒ‹‚ª‰Ÿ‚³‚ê‚½‚©A‘I‘ğƒƒjƒ…[‚É–³‚¢I"
+"ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒæŠ¼ã•ã‚ŒãŸã‹ã€é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ç„¡ã„ï¼"
 }}
-if((Read-Host "‚Ü‚¾‘±‚¯‚éHyes/no") -eq "yes"){TicketManager -WorkDir (Join-Path (Convert-Path .) \)}else{cd ../}
+if((Read-Host "ã¾ã ç¶šã‘ã‚‹ï¼Ÿyes/no") -eq "yes"){TicketManager -WorkDir (Join-Path (Convert-Path .) \)}else{cd ../}
 }end{(date).ToString()+" :"+$ProjectCode+">"+$WorkCode+">"+(Split-Path -Leaf $PSCommandPath)+" Finished." >> $Log;popd}}
