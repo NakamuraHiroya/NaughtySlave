@@ -1,0 +1,10 @@
+FileTypeCode,Detail,SearchWords
+_WBS,各種WBS。,WBS
+_Manual,手順書。フロー図等。,マニュアル・手順書
+_Output,システムから出力されたデータ,
+_Input,システムに取り込んだり入力するデータ,
+_Table,システムのテーブル定義書,テーブル定義書
+_Setting,システムの設定書やパラメートシート等。,
+_Old,昔のファイル,
+_AccountBook,経理や会計系の資料,
+_Menu,メニューに関わるドキュメント,
