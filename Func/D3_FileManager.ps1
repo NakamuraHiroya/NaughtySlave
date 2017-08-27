@@ -1,17 +1,16 @@
 function global:FileManager{
-# File‚ğW‚ß‚ÄAƒGƒNƒZƒ‹‚ğCSV‚É©“®‚Å‚µ‚ÄA_localFileList‚ğì‚éB
-
+# Fileã‚’é›†ã‚ã¦ã€ã‚¨ã‚¯ã‚»ãƒ«ã‚’CSVã«è‡ªå‹•ã§ã—ã¦ã€_localFileListã‚’ä½œã‚‹ã€‚
 
 param(
 	$ProjectDir=$TABLE_DIR,
 	$ProjectCode=$(
 		if($CSV["_ProjectList.csv"].ProjectCode -contains (split-path ../ -leaf)){split-path ../ -leaf}
-		else{$CSV["_ProjectList.csv"].ProjectCode|ogv -PassThru -Title "ProjectCode‚ğ‘I‚ñ‚Å‰º‚³‚¢B"}
+		else{$CSV["_ProjectList.csv"].ProjectCode|ogv -PassThru -Title "ProjectCodeã‚’é¸ã‚“ã§ä¸‹ã•ã„ã€‚"}
 	),
 	$WorkDir=(Join-Path $ProjectDir $ProjectCode),
 	$WorkCode=$(
 		if($CSV["_FileTypeCode.csv"].FileTypeCode -contains (split-path . -leaf)){split-path . -leaf}
-		else{$CSV["_FileTypeCode.csv"].FileTypeCode|ogv -PassThru -Title "FileTypeCode‚ğ‘I‚ñ‚Å‰º‚³‚¢B"}
+		else{$CSV["_FileTypeCode.csv"].FileTypeCode|ogv -PassThru -Title "FileTypeCodeã‚’é¸ã‚“ã§ä¸‹ã•ã„ã€‚"}
 	),
 	$ThisDir=$(cd (Join-Path $WorkDir $WorkCode)),
 	[Switch]$Init
@@ -19,21 +18,21 @@ param(
 
 
 <#---------------------------------------------------------------------------#>
-if($init){#‰Šúˆ—ŠJn
+if($init){#åˆæœŸå‡¦ç†é–‹å§‹
 <#---------------------------------------------------------------------------#>
-#file‚ğget‚µ‚Ä‚­‚éˆ—‚ğ‚·‚éB
+#fileã‚’getã—ã¦ãã‚‹å‡¦ç†ã‚’ã™ã‚‹ã€‚
 
-#Ÿè‚ÉŒÃ‚¢ƒtƒ@ƒCƒ‹‚ğˆÚ“®
+#å‹æ‰‹ã«å¤ã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç§»å‹•
 #mkdir _Old
 
 <#---------------------------------------------------------------------------#>
-}#‰Šúˆ—I—¹
+}#åˆæœŸå‡¦ç†çµ‚äº†
 <#---------------------------------------------------------------------------#>
-$WorkCode
-# InputListì¬
-Set-Content ($WorkCode + "List.csv") "InputCode,Memo" -Encoding Default
 
-# Excelƒtƒ@ƒCƒ‹‚ğˆêŠ‡‚ÅCSV“WŠJB
+# InputListä½œæˆ
+if(-not(Test-Path ($WorkCode+"List.csv"))){Set-Content ($WorkCode + "List.csv") "InputCode,Memo" -Encoding Default}
+
+# Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ‹¬ã§CSVå±•é–‹ã€‚
 #ls -name *.xlsx,*.xls|%{&XLSFileToCSVFile $_}
 
 Set-Content _LocalFileList.csv "LocalFileCode,Memo" -Encoding Default
