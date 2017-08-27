@@ -1,0 +1,4 @@
+TicketCode,Index,ExeCode
+カレンダー開く,0,OpenXLSFile ./_Calender.csv
+ProjectList更新,1,
+Projectを選択して作業開始,2,FileManager
