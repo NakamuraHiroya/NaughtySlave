@@ -1,28 +1,48 @@
 function global:SourceManager{
 
-param($WorkDir=$TABLE_DIR)
-
-# ˆê”ÔÅ‰‚Ìê‡AƒfƒBƒŒƒNƒgƒŠì‚é‚Æ‚±‚ë‚©‚çBì‚Á‚Ä‚©‚çCodeManagerŒÄ‚Ño‚µ
-cd $WorkDir
-
-$NewSourceList=$(
-# Å‰‚Ìˆ—
-if(-not(Test-Path $WorkDir/_Code)){mkdir $WorkDir/_Code}
-
-# ‚ ‚È‚½‚ªî•ñ‚ÉƒAƒNƒZƒXo—ˆ‚él–¼ˆê——‚ğ‹³‚¦‚Ä‰º‚³‚¢B # waitprocess‚Å‘Ò‚Â
-./NaturalPersonCode.csv
-
-# ‚ ‚È‚½‚ªî•ñ‚ÉƒAƒNƒZƒXo—ˆ‚é‰ïĞ–¼‚ğ‹³‚¦‚Ä‰º‚³‚¢B
-./JuridicalPersonCode.csv
-
-# ‚ ‚È‚½‚ªî•ñ‚ÉƒAƒNƒZƒXo—ˆ‚éWEBService‚ğ‹³‚¦‚Ä‰º‚³‚¢B
-./WebServiceCode.csv
-
-# ‚ ‚È‚½‚ªî•ñ‚ÉƒAƒNƒZƒXo—ˆ‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ‹³‚¦‚Ä‰º‚³‚¢B
-
+param(
+	$ThisDir=$(cd $TABLE_DIR),
+	[Switch]$Init,
+	$Ticket=$(
+		$CSV["_TicketList.csv"].TicketCode|ogv -PassThru -Title (($ThisDir) + "SourceManager æ¬¡ã«ä½•ã‚’ã—ã¾ã™ã‹ï¼Ÿ")
+	)
 )
-# listmanagerŒÄ‚Ño‚µ‚ÄATableList‚ğì‚è‚½‚¢B
 
+<#---------------------------------------------------------------------------#>
+if($init){#åˆæœŸå‡¦ç†é–‹å§‹
+<#---------------------------------------------------------------------------#>
+if(-not(Test-Path $ThisDir/_Code)){mkdir $ThisDir/_Code}
 
+Read-Host "ã‚ãªãŸãŒæƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã‚‹è‡ªç„¶äººã‚’æ•™ãˆã¦ä¸‹ã•ã„ã€‚(1/4)"
+Wait-Process -id (start ./_Code/NaturalPersonCode.csv -PassThru).id
+
+Read-Host "ã‚ãªãŸãŒæƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã‚‹æ³•äººã‚’æ•™ãˆã¦ä¸‹ã•ã„ã€‚(2/4)"
+Wait-Process -id (start ./_Code/JuridicalPersonCode.csv -PassThru).id
+
+Read-Host "ã‚ãªãŸãŒæƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã‚‹WEBServiceã‚’æ•™ãˆã¦ä¸‹ã•ã„ã€‚(3/4)"
+Wait-Process -id (start ./_Code/WebServiceCode.csv -PassThru).id
+
+Read-Host "ã‚ãªãŸãŒæƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹å‡ºæ¥ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ•™ãˆã¦ä¸‹ã•ã„ã€‚(4/4)"
+Wait-Process -id (start ./_Code/AppCode.csv -PassThru).id
+
+<#---------------------------------------------------------------------------#>
+}#åˆæœŸå‡¦ç†çµ‚äº†
+<#---------------------------------------------------------------------------#>
+switch($Ticket){
+
+#foræ–‡ã§ï¼
+
+$CSV["_TicketList.csv"].TicketCode[0]{Invoke-Expression $CSV["_TicketList.csv"].ExeCode[0]}
+$CSV["_TicketList.csv"].TicketCode[1]{Invoke-Expression $CSV["_TicketList.csv"].ExeCode[1]}
+$CSV["_TicketList.csv"].TicketCode[2]{Invoke-Expression $CSV["_TicketList.csv"].ExeCode[2]}
+
+default{"ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒæŠ¼ã•ã‚ŒãŸã‹ã€é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ç„¡ã„ï¼"}
+
+}
+
+<#---------------------------------------------------------------------------#>
+#Set-Content _ProjectList.csv "ProjectCode,Memo" -Encoding Default
+#ls -dir -name -Exclude _*|out-file _ProjectList.csv -Encoding Default -Append
+#start .
 
 }
