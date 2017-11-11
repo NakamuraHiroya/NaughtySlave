@@ -7,9 +7,14 @@ param(
 	$OutFile=$($InFile+"_Property.csv")
 )
 if(-not(Test-Path $OutFile)){
-	Set-Content $OutFile "InFile,Property,PropertyType,Type,Min,Max" -Encoding Default
-	cat $InFile -First 1|%{$list=$_ -split ","};$list|%{$Infile+","+$_}|out-file $OutFile -Encoding Default -Append
-}else{$Outfile +":exist"}
+	Set-Content $OutFile "InFile,Property,Type,Min,Max" -Encoding Default
+	
+	(cat $InFile)[0]|%{$Header=$_ -split ","}
+	(cat $Infile)[1]|%{$SampleData=$_ -split ","}
+	
+	$i=0
+	$Header|%{$Infile+","+$Header[$i]+","+((GuessValueType $Sampledata[$i]).gettype().name);$i++}|out-file $OutFile -Encoding Default -Append
 
+}else{$Outfile +":exist"}
 
 }
