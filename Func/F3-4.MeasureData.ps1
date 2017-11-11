@@ -1,26 +1,25 @@
-function global:MeasureData{
+function global:CreateMeasureData{
 
 param(
-	$FileName=$(ls -name *.csv|ogv -passThru -Title "�t�@�C����I�����ĉ������B")
-
+	$InFile=$(ls -name *.csv|ogv -passThru -Title "ファイルを選択して下さい。"),
+	$PropertyFile=$(ls -name *_Property.csv|ogv -passThru -title "プロパティファイルを選択して下さい。"),
+	$Data=$(ipcsv $InFile -encoding default),
+	$OutFile=$($Infile+"_Measure.csv")
 
 )
 
-#if(-not(Test-Path ./MeasureList.csv)){
-Set-Content MeasureList.csv "FileName,PropertyName,Count,Sum" -Encoding Default
+$PropertyInfo_IntList=ipcsv *Property.csv -encoding default|?{$_.Type -eq "Int32"}|%{$_.Property}
 
-$Data=opencsvfile $Filename
-$data|Get-Member|?{$_.MemberType -eq "NoteProperty"}|%{[Object[]]$PropertyList+=$_.name}
 
-$PropertyList|%{
+#if(-not(Test-Path $OutFile)){
+	Set-Content $OutFile "InFile,PropertyName,Count,Sum,Max,Min,Average" -Encoding Default
+#	}
+
+$PropertyInfo_IntList|%{
 	$Property=$_
-	$data|measure $Property -sum -average -max -min|%{$Filename+","+$Property+","+$_.count+","+$_.sum|
-	Out-file MeasureList.csv -encoding default -append}
+	$data|measure -property $Property -sum -max -min -average|%{$InFile+","+$Property+","+$_.count+","+$_.sum,","+$_.Maximum+","+$_.Minimum+","+$_.Average|
+	Out-file $OutFile -encoding default -append}
 
 }
 
-
-
-
 }
-
