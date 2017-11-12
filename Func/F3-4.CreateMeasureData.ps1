@@ -8,7 +8,7 @@ param(
 
 )
 
-$PropertyInfo_IntList=ipcsv *Property.csv -encoding default|?{$_.Type -eq "Int32"}|%{$_.Property}
+$PropertyInfo_IntList=ipcsv $PropertyFile -encoding default|?{$_.Type -eq "Int32"}|%{$_.Property}
 
 
 #if(-not(Test-Path $OutFile)){
