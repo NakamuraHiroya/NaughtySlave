@@ -1,20 +1,24 @@
 function global:CreatePropertyData{
 
-#ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹ã€‚
+#ƒvƒƒpƒeƒBƒŠƒXƒg‚ğì¬‚·‚éB
 
 param(
-	$InFile=$(ls -name *.csv|ogv -PassThru -Title "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚"),
-	$OutFile=$($InFile+"_Property.csv")
+	$InFile=$(ls -name *.csv|ogv -PassThru -Title "ƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä‰º‚³‚¢B"),
+	$OutFile=$("_"+($InFile -split "\.")[0]+"_Property.csv")
 )
 if(-not(Test-Path $OutFile)){
-	Set-Content $OutFile "InFile,Property,Type,Min,Max" -Encoding Default
+	Set-Content $OutFile "InFile,Property,Key,Type,Min,Max,Order" -Encoding Default
 	
 	(cat $InFile)[0]|%{$Header=$_ -split ","}
 	(cat $Infile)[1]|%{$SampleData=$_ -split ","}
 	
 	$i=0
-	$Header|%{$Infile+","+$Header[$i]+","+((GuessValueType $Sampledata[$i]).gettype().name);$i++}|out-file $OutFile -Encoding Default -Append
+	$Header|%{$Infile+","+$Header[$i]+","+" "+","+((GuessValueType $Sampledata[$i]).gettype().name);$i++}|
+	Out-file $OutFile -Encoding Default -Append
 
-}else{$Outfile +":exist"}
+}else{$Outfile +" :Already Exist";exit}
+
+#logì¬
+CreateTicketData -Data "CreatePropertyData,$InFile,$OutFile"
 
 }
