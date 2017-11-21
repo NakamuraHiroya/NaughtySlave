@@ -1,17 +1,17 @@
 function global:SplitRowGroupData{
 
 param(
-	$InFile=$(ls -name *.csv|ogv -PassThru -Title "å…¥åŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚"),
+	$InFile=$(ls -name *.csv|ogv -PassThru -Title "“ü—Í‚·‚éƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä‰º‚³‚¢B"),
 	$Data=$(ipcsv $Infile -Encoding Default),
-	$raw=$($Data|Get-Member|?{$_.MemberType -eq "NoteProperty"}|%{$_.name}|ogv -PassThru -Title "åˆ†å‰²å¯¾è±¡ã®åˆ—åã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚"),
-	$OutFile=$(if($InFile){$Infile}else{Read-Host "å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"})
+	$raw=$((cat $InFile)[0] -split ","|ogv -PassThru -Title "•ªŠ„‘ÎÛ‚Ì—ñ–¼‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢B"),
+	$OutFile=$(($InFile -split "\.")[0])
 )
 
-# ã€ã€‘ã‚„[]ã‚„/ã‚’å¤‰æ›ã—ãªã„ã¨ãƒ€ãƒ¡ï¼
+# yz‚â[]‚â/‚ğ•ÏŠ·‚µ‚È‚¢‚Æƒ_ƒI
 $data|group $raw|%{$name=$_.Name;$_.Group|Export-CSV ($OutFile+"_"+$name+".csv") -Encoding Default -NoTypeInformation}
 
-# ãƒã‚±ãƒƒãƒˆãƒ­ã‚°ä½œæˆ
-Add-Content _TicketList_Data.csv ",SplitRowGroupData,$InFile,$OutFile,$Data,$raw" -Encoding Default
+# ƒ`ƒPƒbƒgƒƒOì¬
+CreateTicketData -data "SplitRowGroupData,$InFile,$OutFile,$Data,$raw"
 
 
 }
