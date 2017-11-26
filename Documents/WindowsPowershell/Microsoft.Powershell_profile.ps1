@@ -14,15 +14,15 @@ Set-variable -name YYYYMMDD -value (Get-Date).ToString("yyyyMMdd") -option const
 ls $NS_DIR*.ps1 -name|%{. $NS_DIR$_}
 
 #DataSet
-ls -name $NS_DIR*.csv|%{$Data+=@{$_=(OpenCSVFile (Join-Path $NS_DIR $_))}}
-$data.'WBS.csv'|?{$_.SetData}|%{pushd $_.WorkDir;ls -name *.csv|%{$Data+=@{$_=(OpenCSVFile $_)}};popd}
+ls -name $NS_DIR*.csv|%{$DataList+=@{$_=(OpenCSVFile (Join-Path $NS_DIR $_))}}
+$DataList.'WBS.csv'|?{$_.SetData}|%{pushd $_.WorkDir;ls -name *.csv|%{$DataList+=@{$_=(OpenCSVFile $_)}};popd}
 
 #Alias定義
-$Data["AppList.csv"]|%{if($_.AliasCode){Set-Alias $_.AliasCode $_.ExeCode}}
+$DataList.'AppList.csv'|%{if($_.AliasCode){Set-Alias $_.AliasCode $_.ExeCode}}
 
 #Persona定義
-$JPCode=$data["Persona.csv"].JPCode
-$NPCode=$data["Persona.csv"].NPCode
+$JPCode=$DataList."Persona.csv".JPCode
+$NPCode=$dataList."Persona.csv".NPCode
 
 #ビープ音消す
 # Stop-Service beep
