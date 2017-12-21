@@ -9,7 +9,7 @@ $OutFile="_TicketList_1.Path.csv"
 
 
 if(-not(Test-Path($OutFile))){
-	Set-Content $OutFile "FunctionName,InFile,OutFile" -Encoding Default
+	Set-Content $OutFile "FunctionName,WorkDir,InFile,OutFile,Header" -Encoding Default
 }
 
 Add-Content $OutFile $Data -Encoding Default
