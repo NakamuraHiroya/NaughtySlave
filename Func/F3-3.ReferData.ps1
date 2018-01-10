@@ -9,13 +9,14 @@ param(
 	$OutFile=$(($InFile -split "\.")[0]+"_Refer.csv")
 )
 
-$Property_ReferList=ipcsv $PropertyFile -encoding default|?{$_.ReferData}
+$Property_ReferList=ipcsv $PropertyFile -encoding default|?{$_.ReferMaster}
 
 $Property_ReferList|%{
-	$Property=$_.Property
-	$ReferData=$_.ReferData
+	$ReferMaster=$_.ReferMaster
+	$Key=$_.Property
+	$ReferValue=$_.ReferValue
 	
-	$Data|%{$_.$Property=(Invoke-Expression $ReferData)}
+	$Data|%{$_.$Key=(ReferValue $ReferMaster $_.$Key $ReferValue)}
 	$Data|Export-Csv $OutFile -Encoding Default -NoTypeInformation
 }
 }
