@@ -1,15 +1,18 @@
 # NaughtySlave
 業務自働化支援アプリです！  
+最小限の手間で業務完全自動化を出来るようにします！！  
 
-最小限の手間で、業務完全自動化を出来るようにします！！  
+implementorって役割の人とUserって役割の人を想定してて、implementorは、Userに、NaughtySlaveの色々使い方を教えてあげる想定です。  
+Userはimplementorに色々ご教示頂いて、頑張って自働化します。
 
-implementorって役割の人と、Userって役割の人を想定してて、implementorは、Userに、NaughtySlaveの色々使い方を教えてあげる想定です。  
-Userは、implementorに、
-
+## 
 
 ## Userがすること
 1. WBS作成  
-　xxx
-1. TableList作成  
-　xxx
+　決められたフォルダの第一階層に、「Project名」、決められたフォルダの第二階層に、「Work名」となるようにフォルダを作成します。  
+　いっつもやってるような感じで、多少間違っててもフォルダを消したり作ったりしたら大丈夫です。 
+ 
+1. TableList作成  
+　決められたフォルダの第一階層に、
+ 
 1. ttt
