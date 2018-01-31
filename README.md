@@ -6,7 +6,10 @@ Implementorは、多少コマンドをいじれる人を想定してて、Naught
 Userはimplementorに色々ご教示頂きながら、頑張って自身の業務を自動化していきます。
 
 ## NaughtySlaveの動作
-Powershellを起動すると、Profileでグローバル関数群を読み込んで、ディレクトリ構成を元にWBSやDataBaseListを
+Powershellを起動すると、Profileでグローバル関数群を読み込んで、ディレクトリ構成を元にWBSやDataBaseListをCSV出力します。  
+予め定義されたTicketファイルを、順に実行します。  
+一般的には、必要な場所から必要なファイルを取ってきて、ディレクトリ配下にあるエクセルをシート別にCSV化して$datalistとしてハッシュでKeyをcsv名、ValueをDataの形で保存。  
+DefineSheetを元に、
 
 ## Implementorがすること
 1. NaughtySlaveの動作理解  
