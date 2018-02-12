@@ -4,18 +4,18 @@ function global:OrderRowData{
 
 param(
 	$InFile=$(ls -name *.csv -exclude _*|ogv -passThru -Title "ファイルを選択して下さい。"),
-	$PropertyFile=$("_"+($InFile -split "\.")[0]+"_Property.csv"),
-	$OutFile=$(($InFile -split "\.")[0]+"_Order.csv")
-
+	$PropertyFile=$("_DefineSheet_"+($InFile -split "\.")[0]+".csv"),
+	$OutFile=$(($InFile -split "\.")[0]+"_Order.csv"),
+	$Ticket
 )
 
-$PropertyInfo_OrderList=ipcsv $PropertyFile -encoding default|?{$_.Order}|%{$_.Property}
+$PropertyInfo_OrderList=ipcsv $PropertyFile -encoding default|?{$_.Order}|sort{$_.Order -as [int]}|%{$_.Property}
 
 (ipcsv $InFile -encoding default)|select $PropertyInfo_OrderList|
 Export-csv $OutFile -encoding default -notypeinformation
 
-#log作成
-CreateTicketData -Data "OrderRowData,$InFile,$OutFile"
+# チケットログ作成
+if($Ticket){CreateTicketData -Data "$Ticket,OrderRowData,$InFile,$OutFile"}
 
 
 }
