@@ -1,35 +1,105 @@
-#ÉAÉZÉìÉuÉäì«Ç›çûÇ›
+<#-----------------------------------------------------------------------------
+Åyä÷êîóÃàÊÅz
+-----------------------------------------------------------------------------#>
+cd ($NS_DIR="C:\Users\hiroya\Documents\NaughtySlave\")
+
+<#-------------------------------------
+[ÉAÉZÉìÉuÉäì«Ç›çûÇ›]
+-------------------------------------#>
 Add-Type -AssemblyName System.Windows.Forms
 
-# ì˙ïtåníËêîíËã`
+<#-------------------------------------
+[ëSÇƒÇÃä÷êîì«Ç›çûÇ›]
+-------------------------------------#>
+ls $NS_DIR*.ps1 -name|%{. $NS_DIR$_}
+
+<#-----------------------------------------------------------------------------
+Åyé©ìÆâªíËã`óÃàÊÅz
+-----------------------------------------------------------------------------#>
+cd ($WBS_DIR="C:\Users\hiroya\Documents\WBS")
+
+<#-------------------------------------
+[ëÊàÍäKëwÇ…ProjectListçÏê¨]
+-------------------------------------#>
+CreateDirInfo -WorkDir $WBS_DIR -Header "DummyCode,AreaCode,ProjectCode,WorkDir" -OutFile "ProjectList.csv"
+
+<#-------------------------------------
+[ëÊìÒäKëwÇ…WorkListçÏê¨]
+-------------------------------------#>
+ipcsv ProjectList.csv -Encoding Default|%{
+	pushd $_.WorkDir
+	CreateDirInfo -Header "AreaCode,ProjectCode,WorkCode,WorkDir" -OutFile "_WorkList.csv"
+<#-------------------------------------
+[ëÊìÒäKëwÇ…DefineSheetçÏê¨]
+-------------------------------------#>
+	ls -name *.csv -Exclude _*|%{CreateDefineSheet $_}
+	popd
+}
+<#-------------------------------------
+[ëÊàÍäKëwÇ…ÇƒWBSçÏê¨]
+-------------------------------------#>
+ls -dir -name|%{
+	$WBS+=(ipcsv (Join-Path $_ _WorkList.csv) -Encoding Default)}
+	$WBS|select AreaCode,ProjectCode,WorkCode,WorkDir|Export-CSV WBS.csv -Encoding Default -NoTypeInformation
+	ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}
+}
+
+<#-----------------------------------------------------------------------------
+ÅyäÆëSé©ìÆâªóÃàÊÅz
+-----------------------------------------------------------------------------#>
+cd ($DB_DIR="C:\Users\hiroya\Documents\My Data Sources\")
+
+<#-------------------------------------
+[ëÊàÍäKëwÇ…DataBaseListçÏê¨]
+-------------------------------------#>
+CreateDirInfo -WorkDir $DB_DIR -Header "DummyCode,AreaCode,DataBaseCode,WorkDir" -OutFile "DataBaseList.csv"
+
+<#-------------------------------------
+[ëÊìÒäKëwÇ…TableListçÏê¨]
+-------------------------------------#>
+ipcsv DataBaseList.csv -Encoding Default|%{
+	pushd $_.WorkDir
+	createdirinfo -Header "AreaCode,DataBaseCode,TableCode,WorkDir" -OutFile "_TableList.csv"
+<#-------------------------------------
+[ëÊìÒäKëwÇÃäeCSVÉtÉ@ÉCÉãÇ$DataListÇ…â¡Ç¶ÇÈ]
+-------------------------------------#>
+	ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}}
+	popd
+}
+
+<#-------------------------------------
+[ëÊàÍäKëwÇ…ÇƒTableListìùçá]
+-------------------------------------#>
+ls -dir -name|%{
+	$TableList+=(ipcsv (join-path $_ _TableList.csv) -Encoding Default)}
+	$TableList|select AreaCode,DataBaseCode,TableCode,WorkDir|Export-Csv TableList.csv -Encoding Default -NoTypeInformation
+	ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}
+}
+
+<#-------------------------------------
+[çƒãAìIÇ…äeTableÇ…îzíuÇ≥ÇÍÇΩTicketÇé¿çs]
+-------------------------------------#>
+$TableList|%{
+	pushd $_.WorkDir;
+	if(Test-Path _TicketList_1.Path.csv){ExeTicketPath};
+	if(Test-Path _TicketList_2.File.csv){ExeTicketFile};
+	if(Test-Path _TicketList_3.Data.csv){ExeTicketData};
+	popd
+}
+
+<#-------------------------------------
+[ì˙ïtånïœêîíËã`]
+-------------------------------------#>
 Set-variable -name YYYYMM -value (Get-Date).ToString("yyyyMM") -option constant
 Set-variable -name YYYYMMDD -value (Get-Date).ToString("yyyyMMdd") -option constant
 
-#ä÷êîì«Ç›çûÇ›
-$NS_DIR="C:\Users\hiroya\Documents\NaughtySlave\"
-ls $NS_DIR*.ps1 -name|%{. $NS_DIR$_}
-
-#DatabaselistçÏê¨
-$TABLE_DIR="C:\Users\hiroya\Documents\My Data Sources\"
-CreateDirInfo -WorkDir $TABLE_DIR -OutFile "DataBaseList.csv"
-cd $TABLE_DIR
-$DataBaseList=ipcsv DataBaseList.csv -Encoding Default
-$DataBaseList|%{createdirinfo -workdir $_.workdir -OutFile "_TableList.csv"}
-ls -dir -name|%{$DataBaseList+=(ipcsv (join-path $_ _TableList.csv) -Encoding Default)}
-$DataBaseList|Export-Csv DataBaseList.csv -Encoding Default -NoTypeInformation
-ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}}
-
-#DataSet
-ls -name $NS_DIR*.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv (Join-Path $NS_DIR $_) -Encoding Default)}}
-#$DataList.'WBS.csv'|?{$_.SetData}|%{pushd $_.WorkDir;ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}};popd}
-$DataList.'DatabaseList.csv'|%{pushd $_.WorkDir;ls -name *.csv -Exclude _*|%{$DataList+=@{$_=(ipcsv $_ -Encoding Default)}};popd}
-
-#AliasíËã`
+<#-------------------------------------
+[AliasíËã`]
+<#-----------------------------------#>
 $DataList.'AppList.csv'|%{if($_.AliasCode){Set-Alias $_.AliasCode $_.ExeCode}}
 
-#ÉrÅ[Évâπè¡Ç∑
-# Stop-Service beep
-
-#DisplayÉAÉâÅ[Égè¡Ç∑
+<#-------------------------------------
+[ExcelÇÃDisplayÉAÉâÅ[Égè¡Ç∑]
+-------------------------------------#>
 (New-Object -ComObject Excel.Application).DisplayAlerts=$false
 
