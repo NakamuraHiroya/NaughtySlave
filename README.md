@@ -1,5 +1,5 @@
 # NaughtySlave
-Powershellで作られた、業務自動化支援アプリです！  
+Powershellで作られた、業務自動化支援アプリです！  
 最小限の手間で業務の完全自動化を出来るようにします！！  
 Implementorって役割の人とUserって役割の人を想定してて、ImplementorはUserに、NaughtySlaveの色々使い方を教えてあげる想定です。  
 Implementorは、多少コマンドをいじれる人を想定してて、NaughtySlaveの仕様を理解出来る人を想定してます。  
