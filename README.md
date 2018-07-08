@@ -14,3 +14,6 @@ Powershellで作られた、業務自動化支援コマンドレット群です�
 3系の関数は、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
 
 
+## 5系
+### ExeTicketFile
+TicketFileを元に、コマンドを実行します。
