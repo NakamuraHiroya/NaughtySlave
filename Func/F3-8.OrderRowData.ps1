@@ -1,9 +1,9 @@
 function global:OrderRowData{
 
-# Property‚ÌOrder’è‹`‚É]‚Á‚Ä—ñ‚Ì‡”Ô‚ð’è‹`‚·‚é
+# Propertyã®Orderå®šç¾©ã«å¾“ã£ã¦åˆ—ã®é †ç•ªã‚’å®šç¾©ã™ã‚‹
 
 param(
-	$InFile=$(ls -name *.csv -exclude _*|ogv -passThru -Title "ƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚Ä‰º‚³‚¢B"),
+	$InFile=$(ls -name *.csv -exclude _*|ogv -passThru -Title "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠžã—ã¦ä¸‹ã•ã„ã€‚"),
 	$PropertyFile=$("_DefineSheet_"+($InFile -split "\.")[0]+".csv"),
 	$OutFile=$(($InFile -split "\.")[0]+"_Order.csv"),
 	$Ticket
@@ -12,9 +12,11 @@ param(
 $PropertyInfo_OrderList=ipcsv $PropertyFile -encoding default|?{$_.Order}|sort{$_.Order -as [int]}|%{$_.Property}
 
 (ipcsv $InFile -encoding default)|select $PropertyInfo_OrderList|
-Export-csv $OutFile -encoding default -notypeinformation
+ConvertTo-Csv -NoTypeInformation |%{$_.replace('"','')}|out-file $OutFile -encoding default
+#Export-csv $OutFile -encoding default -notypeinformation
 
-# ƒ`ƒPƒbƒgƒƒOì¬
+
+# ãƒã‚±ãƒƒãƒˆãƒ­ã‚°ä½œæˆ
 if($Ticket){CreateTicketData -Data "$Ticket,OrderRowData,$InFile,$OutFile"}
 
 
