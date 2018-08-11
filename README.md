@@ -8,6 +8,7 @@ NaughtySlaveに含まれるすべてのコマンドレットは、標準のコ�
 従って「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU")
+<a href="http://micchan.com" target="_blank">Micchan Lab</a>
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンド群です。
