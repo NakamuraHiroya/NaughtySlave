@@ -7,7 +7,7 @@ Powershellで作られた、業務自動化支援コマンドレット群です�
 NaughtySlaveに含まれるすべてのコマンドレットは、標準のコマンドレットと違い、オプションを選択しないで実行すると、何をするかをナビゲートします。
 従って「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
-[自由ソフトウェア][https://www.gnu.org/philosophy/free-sw.ja.html]
+[自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU")
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンド群です。
