@@ -8,15 +8,9 @@ param(
 	[Switch]$move,
 	$Ticket
 )
-$data
-$infile
-$outfile
 
 $SrcFile=(Join-Path $SrcPath $InFile)
 $DistFile=(Join-Path (Convert-Path .) $OutFile)
-
-$SrcFile
-$DistFile
 
 # ファイルが更新されたタイミングが同じなら何もしない
 #if(((ls $SrcFile).LastWriteTime) -eq ((ls $DistFile).LastWriteTime)){return}
