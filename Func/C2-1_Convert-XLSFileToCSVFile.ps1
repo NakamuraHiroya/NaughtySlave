@@ -28,6 +28,6 @@ $excel.Quit();$excel = $null
 
 # チケットログ作成
 $FunctionName=$MyInvocation.MyCommand.Name
-if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,$InFile,$OutFile"}
+if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,,$InFile"}
 
 }
