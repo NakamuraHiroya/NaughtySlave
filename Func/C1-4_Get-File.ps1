@@ -1,20 +1,25 @@
 function global:Get-File{
 
-
 param(
-	$WorkDir=$($DataList."FileList.csv"|ogv -passthru -title "ファイルのパスを選択して下さい。"|%{$_.WorkDir}),
-	$InFile=$($WorkDir|%{$_.InFile}),
-	$OutFile=$($WorkDir|%{$_.OutFile}),
+	$Data=$($DataList."FileList.csv"|ogv -passthru -title "ファイルのパスを選択して下さい。"),
+	$SrcPath=$($Data.WorkDir),
+	$InFile=$($Data.InFile),
+	$OutFile=$($InFile),
 	[Switch]$move,
 	$Ticket
 )
+$data
+$infile
+$outfile
 
-$SrcFile=(Join-Path $WorkDir $InFile)
+$SrcFile=(Join-Path $SrcPath $InFile)
 $DistFile=(Join-Path (Convert-Path .) $OutFile)
 
-# ファイルが更新されたタイミングが同じなら何もしない
-if(((ls $SrcFile).LastWriteTime) -eq ((ls $DistFile).LastWriteTime)){return}
+$SrcFile
+$DistFile
 
+# ファイルが更新されたタイミングが同じなら何もしない
+#if(((ls $SrcFile).LastWriteTime) -eq ((ls $DistFile).LastWriteTime)){return}
 
 if($move){
 	mv $SrcFile $DistFile
@@ -22,7 +27,9 @@ if($move){
 	cp $SrcFile $DistFile
 }
 
-if($Ticket){CreateTicketPath -Data "$Ticket,$MyInvocation.MyCommand.Name,$WorkDir,$InFile,$OutFile"}
+# チケットログ作成 "Ticket,Timing,FunctionName,SrcPath,InFile,OutFile,Row,Line"
+$FunctionName=$MyInvocation.MyCommand.Name
+if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,`"`"`"$SrcPath`"`"`",$InFile,$OutFile"}
 
 }
 
