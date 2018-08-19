@@ -14,7 +14,12 @@ $TicketFile|%{
 			#[ValidateSet('Yes','No')]$Answer=Read-Host ($_.Ticket+" を実行しますか？Yes/No")
 			#if($Answer -eq 'No'){return}
 			if((Read-Host ($_.Ticket+" を実行しますか？Yes/No")) -eq 'No'){return}
-		} 
+		}
+		
+		if($_.Timing -eq "Manual"){return}
+		
+		# メッセージ
+		(pwd).path+$_.Ticket+"を実行開始します"
 	
 		if($_.SrcPath){$SrcPathCommand=" -SrcPath "+$_.SrcPath}else{$SrcPathCommand=""}
 		if($_.InFile){$InCommand=" -infile "+$_.InFile}else{$InCommand=""}
