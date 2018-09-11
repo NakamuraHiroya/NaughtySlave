@@ -6,11 +6,14 @@ param(
 	$Ticket
 )
 
-$InFile|%{
+$InFile -split " "|%{
 	$data+=ipcsv $_ -encoding default
 }
 $data|ConvertTo-Csv -NoTypeInformation |%{$_.replace('"','')}|out-file $OutFile -encoding default
 
-# チケットログ作成
-if($Ticket){CreateTicketFile -data "$Ticket,Merge-File,$InFile,$OutFile"}
+$FunctionName=$MyInvocation.MyCommand.Name
+#Ticket,Timing,CommandName,SrcPath,InFile,OutFile,Row,Line
+$InFile=("`"`"`""+$InFile+"`"`"`"")
+if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,,$InFile,$OutFile"}
+
 }
