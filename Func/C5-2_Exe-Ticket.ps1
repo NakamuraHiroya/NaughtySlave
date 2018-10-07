@@ -30,14 +30,14 @@ $TicketFile|%{
 		if($_.Row){$RowCommand=" -row "+$_.Row}else{$RowCommand=""}
 		if($_.Line){$LineCommand=" -line "+$_.Line}else{$LineCommand=""}
 		if($_.Value){$ValueCommand=" -Value "+$_.Value}else{$ValueCommand=""}
-		if($_.SrcPath){$SrcPathCommand=" -SrcPath "+$_.SrcPath}else{$SrcPathCommand=""}
 		if($_.SrcDir)   {$SrcDirCommand=" -SrcDir "+$_.SrcDir}else{$SrcDirCommand=""}
-		if($_.DistPath) {$DistPathCommand=" -DistPath "+$_.DistPath}else{$DistPathCommand=""}
+		if($_.SrcPath){$SrcPathCommand=" -SrcPath "+$_.SrcPath}else{$SrcPathCommand=""}
 		if($_.DistDir)  {$DistDirCommand=" -DistDir "+$_.DistDir}else{$DistDirCommand=""}
+		if($_.DistPath) {$DistPathCommand=" -DistPath "+$_.DistPath}else{$DistPathCommand=""}
 	
-		# "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcPath,SrcDir,DistPath,DistDir
+		# "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath
 	
-		Invoke-Expression ($_.CommandName + $WorkDirCommand + $InCommand + $OutCommand + $RowCommand + $LineCommand + $ValueCommand + $SrcPathCommand + $SrcDirCommand + $DistPathCommand + $DistDirCommand)
+		Invoke-Expression ($_.CommandName + $WorkDirCommand + $InCommand + $OutCommand + $RowCommand + $LineCommand + $ValueCommand + $SrcDirCommand + $SrcPathCommand + $DistDirCommand +$DistPathCommand)
 	
 	}
 }

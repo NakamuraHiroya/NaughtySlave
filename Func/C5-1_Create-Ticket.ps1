@@ -8,7 +8,7 @@ param(
 $OutFile="_TicketList.csv"
 
 if(-not(Test-Path($OutFile))){
-	Set-Content $OutFile "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcPath,SrcDir,DistPath,DistDir" -Encoding Default
+	Set-Content $OutFile "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath" -Encoding Default
 }
 
 Add-Content $OutFile $Data -Encoding Default
