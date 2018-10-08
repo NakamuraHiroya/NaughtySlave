@@ -3,7 +3,7 @@ function global:Get-File{
 param(
 	$SrcDir=$(($DataList."WBS.csv"|ogv -passthru -title "ファイルのパスを選択して下さい。").WorkDir),
 	$WorkDir=$((pwd).path),
-	$InFile=$(ls -name $Dir|ogv -passThru -Title "ファイルを選択して下さい。"),
+	$InFile=$(ls -name $SrcDir|ogv -passThru -Title "ファイルを選択して下さい。"),
 	$SrcPath=$(Join-Path $SrcDir $InFile),
 	$OutFile=$($InFile),
 	$DistPath=(Join-Path $WorkDir $OutFile),
