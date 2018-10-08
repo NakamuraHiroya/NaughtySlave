@@ -1,29 +1,26 @@
 function global:Get-File{
 
 param(
-	$Data=$($DataList."FileList.csv"|ogv -passthru -title "ファイルのパスを選択して下さい。"),
-	$SrcPath=$($Data.WorkDir),
-	$InFile=$($Data.InFile),
+	$SrcDir=$(($DataList."WBS.csv"|ogv -passthru -title "ファイルのパスを選択して下さい。").WorkDir),
+	$WorkDir=$((pwd).path),
+	$InFile=$(ls -name $Dir|ogv -passThru -Title "ファイルを選択して下さい。"),
+	$SrcPath=$(Join-Path $SrcDir $InFile),
 	$OutFile=$($InFile),
+	$DistPath=(Join-Path $WorkDir $OutFile),
 	[Switch]$move,
 	$Ticket
 )
 
-$SrcFile=(Join-Path $SrcPath $InFile)
-$DistFile=(Join-Path (Convert-Path .) $OutFile)
-
 # ファイルが更新されたタイミングが同じなら何もしない
-#if(((ls $SrcFile).LastWriteTime) -eq ((ls $DistFile).LastWriteTime)){return}
+#if(((ls $SrcPath).LastWriteTime) -eq ((ls $DistFile).LastWriteTime)){return}
 
-if($move){
-	mv $SrcFile $DistFile
-}else{
-	cp $SrcFile $DistFile
-}
+#if($move){	mv $SrcPath $DistFile}else{	cp $SrcPath $DistFile}
 
-# チケットログ作成 "Ticket,Timing,FunctionName,SrcPath,InFile,OutFile,Row,Line"
+cp $SrcPath $DistPath
+
+# チケットログ作成 "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath"
 $FunctionName=$MyInvocation.MyCommand.Name
-if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,`"`"`"$SrcPath`"`"`",$InFile,$OutFile"}
+if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,$WorkDir,$InFile,$OutFile,,,,`"`"`"$SrcDir`"`"`",`"`"`"$SrcPath`"`"`",`"`"`"$DistDir`"`"`",`"`"`"$DistPath`"`"`","}
 
 }
 
