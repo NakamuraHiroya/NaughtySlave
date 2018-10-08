@@ -6,7 +6,7 @@ param(
 	$InFile=$(ls -name $SrcDir|ogv -passThru -Title "ファイルを選択して下さい。"),
 	$SrcPath=$(Join-Path $SrcDir $InFile),
 	$OutFile=$($InFile),
-	$DistDir=$(WorkDir),
+	$DistDir=$($WorkDir),
 	$DistPath=(Join-Path $WorkDir $OutFile),
 	[Switch]$move,
 	$Ticket
