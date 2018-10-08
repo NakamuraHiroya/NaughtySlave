@@ -34,10 +34,11 @@ $TicketFile|%{
 		if($_.SrcPath){$SrcPathCommand=" -SrcPath "+$_.SrcPath}else{$SrcPathCommand=""}
 		if($_.DistDir)  {$DistDirCommand=" -DistDir "+$_.DistDir}else{$DistDirCommand=""}
 		if($_.DistPath) {$DistPathCommand=" -DistPath "+$_.DistPath}else{$DistPathCommand=""}
+		if($_.DefineSheet){$DefineSheetCommand=" -DefineSheet "+$_.DefineSheet}else{$DeFineSheetCommand=""}
 	
-		# "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath
+		# "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath,DefineSheet
 	
-		Invoke-Expression ($_.CommandName + $WorkDirCommand + $InCommand + $OutCommand + $RowCommand + $LineCommand + $ValueCommand + $SrcDirCommand + $SrcPathCommand + $DistDirCommand +$DistPathCommand)
+		Invoke-Expression ($_.CommandName + $WorkDirCommand + $InCommand + $OutCommand + $RowCommand + $LineCommand + $ValueCommand + $SrcDirCommand + $SrcPathCommand + $DistDirCommand +$DistPathCommand + $DefineSheetCommand)
 	
 	}
 }
