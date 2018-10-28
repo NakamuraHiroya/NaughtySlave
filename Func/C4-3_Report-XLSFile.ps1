@@ -1,9 +1,9 @@
 function global:Report-XLSFile{
 
 param(
-	$InFile=$(ls -name *.xls*|ogv -PassThru -Title "å…¥åŠ›ã™ã‚‹ã‚¨ã‚¯ã‚»ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚"),
-	$SheetName=$(Read-Host "ã‚·ãƒ¼ãƒˆåã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚"),
-	$InputFile=$(ls -name *.csv|ogv -PassThru -Title "InputFileã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚"),
+	$InFile=$(ls -name *.xls*|ogv -PassThru -Title "“ü—Í‚·‚éƒGƒNƒZƒ‹ƒtƒ@ƒCƒ‹‚ğw’è‚µ‚Ä‰º‚³‚¢B"),
+	$SheetName=$(Read-Host "ƒV[ƒg–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B"),
+	$InputFile=$(ls -name *.csv|ogv -PassThru -Title "InputFile‚ğw’è‚µ‚Ä‰º‚³‚¢B"),
 	$OutFile=$($Infile+"_Report.xlsx")
 
 )
@@ -12,7 +12,7 @@ $excel = New-Object -ComObject Excel.Application
 $excel.Visible = $false 
 $excel.DisplayAlerts = $false
 
-#ã‚¨ã‚¯ã‚»ãƒ«ã‚’é–‹ã
+#ƒGƒNƒZƒ‹‚ğŠJ‚­
 $book = $excel.Workbooks.Open((Convert-path $InFile))
 
 $Sheet=$book.sheets($SheetName)
@@ -24,7 +24,7 @@ $book.SaveAs($OutFile)
 
 $excel.Quit();$excel = $null
 
-# ãƒã‚±ãƒƒãƒˆãƒ­ã‚°ä½œæˆ
+# ƒ`ƒPƒbƒgƒƒOì¬
 Add-Content _TicketList_File.csv ",XLSFileToCSVFile,$InFile" -Encoding Default
 
 }
