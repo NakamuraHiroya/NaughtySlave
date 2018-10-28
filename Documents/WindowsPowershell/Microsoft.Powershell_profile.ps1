@@ -9,11 +9,10 @@ Add-Type -AssemblyName System.Windows.Forms
 cd ($NS_DIR="C:\Users\hiroya\Documents\NaughtySlave\")
 ls $NS_DIR*.ps1 -name|%{. $NS_DIR$_}
 
-<#-----------------------------------------------------------------------------
-【WorkDirで自動処理実行】
------------------------------------------------------------------------------#>
-cd ($WBS_DIR="C:\Users\hiroya\Documents\WBS")
-Exe-Ticket
+<#-------------------------------------
+[WorkDirで自動処理実行]
+-------------------------------------#>
+Exe-Ticket -WorkDir (cd ($WBS_DIR="C:\Users\hiroya\Documents\WBS"))
 
 <#-------------------------------------
 [日付系変数定義]
@@ -25,9 +24,3 @@ Set-variable -name YYYYMMDD -value (Get-Date).ToString("yyyyMMdd") -option const
 [Alias定義]
 <#-----------------------------------#>
 $DataList.'AppList.csv'|%{if($_.AliasCode){Set-Alias $_.AliasCode $_.ExeCode}}
-
-<#-------------------------------------
-[ExcelのDisplayアラート消す]
--------------------------------------#>
-(New-Object -ComObject Excel.Application).DisplayAlerts=$false
-
