@@ -1,7 +1,0 @@
-TicketCode,ExeCode,AliasCode
-Iticker起動,C:\Program Files (x86)\SoftREED\ITicker\ITicker.exe,Iticker
-ThunderBird起動,C:\Program Files (x86)\Mozilla Thunderbird\thunderbird.exe,mail
-Excel起動,C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE,excel
-Chrome起動,C:\Program Files (x86)\Google\Chrome\Application\chrome.exe,chrome
-Vi起動,C:\Program Files (x86)\sakura\sakura.exe,vi
-エディタで開く,Invoke-item,less
