@@ -21,16 +21,17 @@ NaughtySlaveは、_TicketList.csvと、_DefineSheet*.csvを元に動作します
 ## 2 File系 
 ファイルに対して処理されるコマンド群です。ファイルをテーブル化されたCSVデータにすることを目的とします。
 
-### C2-1.Convert-XLSFileToCSVFile
+### Convert-XLSFileToCSVFile
 エクセルファイルを、シートの数だけCSVファイルに展開します。
 
 ## 3系
 3系の関数は、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
 
-### C3-1.CreateDefineSheet
-定義シートを作成します。作成された定義シートを更新し、別コマンドを実行することにより簡単に自動化を実現します。
-### C3-4.Exe-Funciton
-DefineSheetのFunction列に記入された関数または変数を、その列に対して適用します。
+### C3-1_Create-DefineSheet
+定義シートを作成します。NaughtySlaveでは、作成された定義シートを更新し、別コマンドを実行することにより簡単に自動化を実現します。
+
+### C3-4_Exe-Funciton
+DefineSheetのFunction列に記入された関数または変数を実行(Invoke)します。
 
 1. グローバル変数
 　グローバル変数リストに入っている変数は、そのまま使うことが可能です。
@@ -46,14 +47,14 @@ DefineSheetのFunction列に記入された関数または変数を、その列�
  
 
 ## 5系
-### T5-1.Create-Ticket
+### T5-1_Create-Ticket
+Ticketを作成します。通常、このコマンドレットは、通常NaughtySlave関数のオプションとして実行されます。
 
-### T5-2.Exe-Ticket
+### T5-2_Exe-Ticket
 TicketFileを元に、コマンドを実行します。
 
 # Functionの仕様
 NaughtySlaveでは、関数は、エクセルで使われる関数という同じ意味での関数を指します。
 一つ違うのは、その列に対してすべて関数が適応されるという点です。
 
-## vlookup
 
