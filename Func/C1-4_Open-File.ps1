@@ -8,32 +8,26 @@ param(
 
 $extension=(($InFile -split "\.")[1])
 
-$extension
-
 switch($extension){
 
 xlsx{
 	$excel = New-Object -ComObject Excel.Application
 	$excel.Visible = $true
 	$excel.DisplayAlerts = $false
-	$book = $excel.Workbooks.Open((Convert-path $XLSFile))
-
+	$book = $excel.Workbooks.Open((Convert-path $InFile))
 }
 xls{
 	$excel = New-Object -ComObject Excel.Application
 	$excel.Visible = $true
 	$excel.DisplayAlerts = $false
-	$book = $excel.Workbooks.Open((Convert-path $XLSFile))
-
+	$book = $excel.Workbooks.Open((Convert-path $InFile))
 }
 csv{
-	# TODO エディタで開くかエクセルで開くか選べるよーにする。
-
+	# TODO エディタで開くかエクセルで開くか選べるようにする。
 	$excel = New-Object -ComObject Excel.Application
 	$excel.Visible = $true
 	$excel.DisplayAlerts = $false
-	$book = $excel.Workbooks.Open((Convert-path $XLSFile))
-
+	$book = $excel.Workbooks.Open((Convert-path $InFile))
 }
 ps1{
 	Invoke-Item $Infile
