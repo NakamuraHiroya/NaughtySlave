@@ -1,0 +1,10 @@
+Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath
+ProjectList作成,Always,Create-DirInfo,,,ProjectList.csv,"""HomeCode,AreaCode,ProjectCode,WorkDir""",,,,,,
+第二階層にてWorkList作成,Always,"ipcsv ProjectList.csv -Encoding Default|%{Create-DirInfo -Row ""AreaCode,ProjectCode,WorkCode,WorkDir"" -OutFile ""_WorkList.csv"" -WorkDir $_.WorkDir}",,,,,,,,,,
+第二階層にある_WorkListを集めて第一階層にてWBS.csv作成,Always,"ls -dir -name |%{(ipcsv (join-path $_ _WorkList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File WBS.csv -encoding default",,,,,,,,,,
+タスクリストバックアップ,Always,Backup-File,C:\Users\hiroya\Documents\WBS,TaskList.xlsx,"((Get-Date).ToString(""yyyyMMdd"")+(""_TaskList.xlsx""))",,,,,,"""C:\Users\hiroya\Documents\WBS\T01_TaskList\""","(""C:\Users\hiroya\Documents\WBS\T01_TaskList\""+($yyyymmdd)+(""_TaskList.xlsx""))"
+タスクリストCSV展開,Always,Convert-XLSFileToCSVFile,,TaskList.xlsx,,,,,,,,
+タスクリスト不要行削除,Always,Cut-Line,,TaskList.csv,TaskList.csv,,27,,,,,
+タスクリストヘッダ追加,Always,Insert-LineForFile,,TaskList.csv,TaskList.csv,,1,"""ProjectCode,WorkCode,WorkFreq,Work期日,_TaskName,Ticket期日,本日実施,予定No,予定開始時間,予定完了時間,予定所要時間,予定PID,実施順序,実績開始時間,実績完了時間,実績所要時間,Memo""",,,,
+WBSDirでデータセット,Always,Set-Data,,,,,,,,,,
+CommandListをデータセット,Always,Set-Data,C:\Users\hiroya\Documents\WBS\05_NaughtySlave作成\T01_CommandList,,,,,,,,,
