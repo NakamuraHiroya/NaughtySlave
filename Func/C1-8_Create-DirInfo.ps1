@@ -4,6 +4,7 @@ function global:Create-DirInfo{
 
 param(
 	$WorkDir=$pwd,
+	$InFile="*",
 	$Row="SecondDirCode,ParentCode,WorkCode,WorkDir",
 	$OutFile="DirList.csv",
 	$Ticket
@@ -16,13 +17,13 @@ $SecondDir=Split-Path (Split-Path $WorkDir -Parent) -leaf
 
 Set-Content $OutFile $Row -Encoding Default
 
-if(ls -dir){ls|?{$_.Attributes -like "Directory"}|%{$SecondDir+","+$_.Parent.Name+","+$_.Name+","+$_.FullName}|Out-File $OutFile -append -Encoding default}
+if(ls -dir){ls -exclude _*|?{$_.Attributes -like "Directory"}|?{$_.Name -like $InFile}|%{$SecondDir+","+$_.Parent.Name+","+$_.Name+","+$_.FullName}|Out-File $OutFile -append -Encoding default}
 
 # チケットログ作成
+# "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath
 $FunctionName=$MyInvocation.MyCommand.Name
-#"Ticket,Timing,CommandName,SrcPath,InFile,OutFile,Row,Line"
 $Row=("`"`"`""+$Row+"`"`"`"")
-if($Ticket){Create-Ticket "$Ticket,Always,$FunctionName,,,$OutFile,$Row"}
+if($Ticket){Create-Ticket "$Ticket,Always,$FunctionName,$WorkDir,$InFile,$OutFile,$Row"}
 
 popd
 }
