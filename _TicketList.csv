@@ -1,10 +1,11 @@
 Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath
 ProjectList作成,Always,Create-DirInfo,($NS_DIR),P*,ProjectList.csv,"""HomeCode,AreaCode,ProjectCode,WorkDir""",,,,,,
-MasterList作成,Always,Create-DirInfo,($NS_DIR),M*,MasterList.csv,"""HomeCode,AreaCode,MasterCode,MasterDir""",,,,,,
+DataBaseList作成,Always,Create-DirInfo,($NS_DIR),D*,MasterList.csv,"""HomeCode,AreaCode,DatabaseCode,WorkDir""",,,,,,
+HabitList作成,Always,Create-DirInfo,($NS_DIR),H*,HabitList.csv,"""HomeCode,AreaCode,HabitCode,WorkDir""",,,,,,
 WBS作成_第二階層にて_WorkList作成,Always,"ipcsv ProjectList.csv -Encoding Default|%{Create-DirInfo -InFile W* -Row ""AreaCode,ProjectCode,WorkCode,WorkDir"" -OutFile ""_WorkList.csv"" -WorkDir $_.WorkDir}",,,,,,,,,,
 WBS作成_第二階層にある_WorkList収集,Always,"ls -dir -name P*|%{(ipcsv (join-path $_ _WorkList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File WBS.csv -encoding default",,,,,,,,,,
-DBInfo作成_第二階層にて_TableList作成,Always,"ipcsv MasterList.csv -Encoding Default|%{Create-DirInfo -InFile T* -Row ""AreaCode,DatabaseCode,TableCode,WorkDir"" -OutFile ""_TableList.csv"" -WorkDir $_.WorkDir}",,,,,,,,,,
-DBInfo作成_第二階層にある_TableList収集,Always,"ls -dir -name D*|%{(ipcsv (join-path $_ _TableList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File DBInfo.csv -encoding default",,,,,,,,,,
+DBInfo作成_第二階層にて_MasterList作成,Always,"ipcsv MasterList.csv -Encoding Default|%{Create-DirInfo -InFile M* -Row ""AreaCode,DatabaseCode,MasterCode,WorkDir"" -OutFile ""_MasterList.csv"" -WorkDir $_.WorkDir}",,,,,,,,,,
+DBInfo作成_第二階層にある_MasterList収集,Always,"ls -dir -name D*|%{(ipcsv (join-path $_ _MasterList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File DBInfo.csv -encoding default",,,,,,,,,,
 タスクリストバックアップ,Always,Backup-File,($NS_DIR),TaskList.xlsx,"((Get-Date).ToString(""yyyyMMdd"")+(""_TaskList.xlsx""))",,,,,,"""C:\Users\hiroya\Documents\NaughtySlave\H01_反省\T01_TaskList\""","(""C:\Users\hiroya\Documents\NaughtySlave\C01_反省\H01_TaskList\""+($yyyymmdd)+(""_TaskList.xlsx""))"
 タスクリストCSV展開,Always,Convert-XLSFileToCSVFile,,"""CommandList.xlsx TaskList.xlsx""",,,,,,,,
 タスクリスト不要行削除,Always,Cut-Line,,TaskList.csv,TaskList.csv,,27,,,,,
