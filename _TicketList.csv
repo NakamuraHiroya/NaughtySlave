@@ -6,8 +6,9 @@ WBS作成_第二階層にて_WorkList作成,Always,"ipcsv ProjectList.csv -Encoding Defaul
 WBS作成_第二階層にある_WorkList収集,Always,"ls -dir -name P*|%{(ipcsv (join-path $_ _WorkList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File WBS.csv -encoding default",,,,,,,,,,
 DBInfo作成_第二階層にて_MasterList作成,Always,"ipcsv MasterList.csv -Encoding Default|%{Create-DirInfo -InFile M* -Row ""AreaCode,DatabaseCode,MasterCode,WorkDir"" -OutFile ""_MasterList.csv"" -WorkDir $_.WorkDir}",,,,,,,,,,
 DBInfo作成_第二階層にある_MasterList収集,Always,"ls -dir -name D*|%{(ipcsv (join-path $_ _MasterList.csv) -Encoding Default)}|ConvertTo-Csv -NoTypeInformation |%{$_.replace('""','')}|Out-File DBInfo.csv -encoding default",,,,,,,,,,
-タスクリストバックアップ,Always,Backup-File,($NS_DIR),TaskList.xlsx,"((Get-Date).ToString(""yyyyMMdd"")+(""_TaskList.xlsx""))",,,,,,"""C:\Users\hiroya\Documents\NaughtySlave\H01_反省\T01_TaskList\""","(""C:\Users\hiroya\Documents\NaughtySlave\C01_反省\H01_TaskList\""+($yyyymmdd)+(""_TaskList.xlsx""))"
-タスクリストCSV展開,Always,Convert-XLSFileToCSVFile,,"""CommandList.xlsx TaskList.xlsx""",,,,,,,,
-タスクリスト不要行削除,Always,Cut-Line,,TaskList.csv,TaskList.csv,,27,,,,,
-タスクリストヘッダ追加,Always,Insert-LineForFile,,TaskList.csv,TaskList.csv,,1,"""ProjectCode,WorkCode,WorkFreq,Work期日,_TaskName,Ticket期日,本日実施,予定No,予定開始時間,予定完了時間,予定所要時間,予定PID,実施順序,実績開始時間,実績完了時間,実績所要時間,Memo""",,,,
+TaskListをBackup,Always,Backup-File,($NS_DIR),TaskList.xlsx,"((Get-Date).ToString(""yyyyMMdd"")+(""_TaskList.xlsx""))",,,,,,"""C:\Users\hiroya\Documents\NaughtySlave\H01_反省\T01_TaskList\""","(""C:\Users\hiroya\Documents\NaughtySlave\C01_反省\H01_TaskList\""+($yyyymmdd)+(""_TaskList.xlsx""))"
+TaskListをCSV展開,Always,Convert-XLSFileToCSVFile,,"""CommandList.xlsx TaskList.xlsx""",,,,,,,,
+TaskListの不要行を削除,Always,Cut-Line,,TaskList.csv,TaskList.csv,,27,,,,,
+TaskListのヘッダ追加,Always,Insert-LineForFile,,TaskList.csv,TaskList.csv,,1,"""ProjectCode,WorkCode,WorkFreq,Work期日,_TaskName,Ticket期日,本日実施,予定No,予定開始時間,予定完了時間,予定所要時間,予定PID,実施順序,実績開始時間,実績完了時間,実績所要時間,Memo""",,,,
 WBSDirでデータセット,Always,Set-Data,,,,,,,,,,
+各Masterをデータセット,Always,$datalist.'DBInfo.csv'|%{Set-Data -WorkDir $_.WorkDir},,,,,,,,,,
