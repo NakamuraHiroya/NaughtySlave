@@ -28,11 +28,11 @@ NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプ�
 ## 2 File系 
 ファイルに対して処理されるコマンドレット群です。ファイルをテーブル化されたCSVデータにすることを目的とします。
 
-### Convert-XLSFileToCSVFile
+### Convert-XLSFileToCSVFiles
 エクセルファイルを、シートの数だけCSVファイルに展開します。
 
-## 3系
-3系の関数は、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
+## 3 Data系
+3系のコマンドレットは、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
 
 ### Create-DefineSheet
 定義シートを作成します。NaughtySlaveでは、作成された定義シートを更新し、別コマンドを実行することにより簡単に自動化を実現します。
@@ -51,17 +51,22 @@ DefineSheetのFunction列に記入された関数または変数を実行(Invoke
 　NaughtySlaveでは、関数は列に対して適用され、エクセルと同じようにいくつかの関数を用意しています。
  例：vlookup
  詳しくは、関数の仕様ページをご覧下さい。
- 
 
-## 5系
+## 4 Report系
+4系のコマンドレット群は、レポーティングに特化しています。
+
+### Convert-CSVFilesToXLSFile
+複数のCSVファイルをまとめて1つのエクセルファイルのシートにします。
+
+## 5 Exe系
 ### Create-Ticket
-Ticketを作成します。通常、このコマンドレットは、通常NaughtySlave関数のオプションとして実行されます。
+Ticketを作成します。通常、このコマンドレットは、通常NaughtySlaveコマンドレットのオプションとして実行されます。
 
 ### Exe-Ticket
 TicketFileを元に、コマンドを実行します。
 
 # Functionの仕様
-NaughtySlaveでは、関数は、エクセルで使われる関数という同じ意味での関数を指します。
+NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
 一つ違うのは、その列に対してすべて関数が適応されるという点です。例えば、<要記載>
 
 # QuickStart
