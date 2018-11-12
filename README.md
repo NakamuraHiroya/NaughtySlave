@@ -1,6 +1,6 @@
 # NaughtySlave
 NaughtySlaveは、Powershellで作られた、オフィス業務自動化支援コマンドレット群です。
-統合問題解決パッケージFunnyFriendsシリーズ(PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlave)の一つです。
+統合型問題解決パッケージFunnyFriendsシリーズ(PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlave)の一つです。
 どこかのデータベースからローカルサーバにファイルを落とし、一旦ファイルをオブジェクトにし、加工し、どこかのデータベースにアップロードするまでの一連の作業（巷で言うところの「インタフェース」）について自動化を支援します。
 
 ## 著作権について
