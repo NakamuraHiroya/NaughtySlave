@@ -15,10 +15,11 @@ NaughtySlaveに含まれるすべてのコマンドレットは、標準のコ�
 従って、「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
 ### CSVで記載された定義書に基づいた動作
-NaughtySlaveは、_TicketList*.csvと、_DefineSheet*.csvを元に動作します。これらのcsvファイルを開くと、あなたが技術者でなくとも「なんとなく」どのように動作しているかがわかるはずです。
+NaughtySlaveは、_TicketList*.csvと、_DefineSheet*.csvを元に動作します。これらのcsvファイルを開くと、誰でもなんとなくどのように動作しているかがわかるはずです。
 
-### 定義書は誰が書くのか？
-ではその定義書は、一体誰が書くのでしょうか？NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプションをつけることにより、自動的にTicketListを作成します。また、Create-DefineSheetコマンドで定義書を作成します。
+### 定義書の元ファイル作成
+NaughtySlaveでは、Create-DefineSheetコマンドで定義書の元となるCSVファイルを作成します。このCSVファイルを元に、やりたいことを定義します。
+NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプションをつけることにより、自動的にTicketListを作成します。
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
