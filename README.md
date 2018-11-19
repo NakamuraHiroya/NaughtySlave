@@ -15,16 +15,21 @@ NaughtySlaveに含まれるすべてのコマンドレットは、標準のコ�
 従って、「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
 ### 定義書の元ファイル作成
-NaughtySlaveでは、Create-DefineSheetコマンドで定義書の元となるCSVファイル、_DefineSheet*.csvを作成します。このCSVファイルをエクセルやエディタで開き、更新し、やりたいことを定義します。この定義書は難解な書かれ方をされておらず、誰でもなんとなくどのように動作するかがわかるようになっています。
+NaughtySlaveでは、Create-DefineSheetコマンドで定義書の元となるCSVファイル、_DefineSheet.csvを作成します。このCSVファイルをエクセルやエディタで開き、更新し、やりたいことを定義します。この定義書は難解な書かれ方をされておらず、誰でもなんとなくどのように動作するかがわかるようになっています。
 
 ### TicketListによる再現
-NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプションをつけて実行することにより、自動的にCSVファイル_TicketList*.csvを作成します。  
+NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプションをつけて実行することにより、自動的にCSVファイル_TicketList.csvを作成します。  
 このTicketListに記載された内容もまた、誰でもなんとなくどのような動作を意図とした内容かがわかるはずです。
 そして、Exe-Ticketコマンドを実行することによって、簡単に実行を再現することが出来ます。
 
 ### スクリプトレス
-NaughtySlaveは、上述の通り、
+NaughtySlaveは、上述の通り、_DefineSheet.csvと_TicketList.csvファイルを元に動作します。
+つまり、スクリプトレスです。
 
+# QuickStart
+NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？  
+
+<要記載>  
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
@@ -38,6 +43,15 @@ NaughtySlaveは、上述の通り、
 
 ## 3 Data系
 3系のコマンドレットは、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
+NaughtySlaveでは、csvファイルをcustomobjectに変換した状態のものをDataと呼びます。
+
+### Set-Data
+NaughtySlaveでは、メモリ上に一時的に格納された揮発性のDataを保持し、必要に応じて利用します。
+永続的にデータを保存する一般的なデータベースに比べて、柔軟にデータを取り扱うことが出来ます。この簡易データストアはPersonaと呼ばれます。
+Set-Dataコマンドを用いて、Personaにデータを格納します。
+
+### Get-Data
+Personaより必要なデータを取り出す時、Get-Dataコマンドを使います。
 
 ### Create-DefineSheet
 定義シートを作成します。NaughtySlaveでは、作成された定義シートを更新し、別コマンドを実行することにより簡単に自動化を実現します。
@@ -74,9 +88,5 @@ TicketFileを元に、コマンドを実行します。
 NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
 一つ違うのは、その列に対してすべて関数が適応されるという点です。例えば、<要記載>
 
-# QuickStart
-NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？
-
-<要記載>
 
 Copyright © 2018- NakamuraHiroya All Rights Reserved.
