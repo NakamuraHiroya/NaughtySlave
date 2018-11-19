@@ -2,6 +2,7 @@ function global:Convert-XLSFileToCSVFiles{
 
 param(
 	$InFile=$(ls -name *.xls*|ogv -PassThru -Title "入力するファイルを指定して下さい。"),
+	$WorkDir=$((pwd).path),
 	$OutFile,
 	$Ticket
 )
@@ -9,7 +10,8 @@ $excel=New-Object -comobject Excel.Application
 $excel.Visible=$false 
 $excel.DisplayAlerts=$false
 
-$InFile=$InFile -split " "
+# ワイルドカードを許可
+if($InFile -eq "*"){$InFile=ls -name *.xlsx -Exclude _*}else{$InFile=$InFile -split " "}
 
 $InFile|%{
 	#エクセルを開く
@@ -33,6 +35,6 @@ $excel=$null
 
 # チケットログ作成 "Ticket,Timing,CommandName,WorkDir,InFile,OutFile,Row,Line,Value,SrcDir,SrcPath,DistDir,DistPath"
 $FunctionName=$MyInvocation.MyCommand.Name
-if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,,`"`"`"$InFile`"`"`",,,,,,,,,"}
+if($Ticket){Create-Ticket -Data "$Ticket,Always,$FunctionName,$WorkDir,`"`"`"$InFile`"`"`",,,,,,,,,"}
 
 }
