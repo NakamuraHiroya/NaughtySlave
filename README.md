@@ -90,6 +90,8 @@ TicketFileを元に、コマンドを実行します。
 
 # Functionの仕様
 NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
-一つ違うのは、その列に対してすべて関数が適応されるという点です。例えば、
+一つ違うのは、その列に対してすべて関数が適応されるという点です。
+
+---
 
 Copyright © 2018- NakamuraHiroya All Rights Reserved.
