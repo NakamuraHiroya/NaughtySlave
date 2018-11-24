@@ -7,12 +7,6 @@ NaughtySlaveは、Powershellで作られた、オフィス業務自動化支援�
 NaughtySlaveの著作権は中村浩也にあります。
 NaughtySlaveは自由ソフトウェアです。ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU")
-<a href="http://google.com" target="_blank"<新規タブで開く</a>
-<script language="JavaScript">
-$(document).ready( function () {
-   $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
-})
-</script>
 
 # コマンドレットの仕様
 ## 共通
