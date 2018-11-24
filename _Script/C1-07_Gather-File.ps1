@@ -1,6 +1,6 @@
 function global:Gather-File{
 
-# 
+# $Value条件で指定した1階層下のディレクトリにある$InFile名を収集して$OutFile名を現在のディレクトリに作成します。
 
 param(
 	$WorkDir=$((pwd).path),
