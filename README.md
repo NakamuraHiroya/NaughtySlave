@@ -6,7 +6,7 @@ NaughtySlaveは、Powershellで作られた、オフィス業務自動化支援�
 ## 著作権について
 NaughtySlaveの著作権は中村浩也にあります。
 NaughtySlaveは自由ソフトウェアです。ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
-[自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU" target="_blank")
+[自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU")
 
 # コマンドレットの仕様
 ## 共通
