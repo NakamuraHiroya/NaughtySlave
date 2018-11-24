@@ -85,8 +85,9 @@ Ticketを作成します。通常、このコマンドレットは、通常Naugh
 TicketFileを元に、コマンドを実行します。
 
 # Functionの仕様
-NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
+NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。  
 一つ違うのは、その列に対してすべて関数が適応されるという点です。
+
 ---
 *1:PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlaveからなるパッケージ。
 
