@@ -4,8 +4,8 @@ NaughtySlaveは、Powershellで書かれた、オフィス業務自動化支援�
 どこかのデータベースからローカルサーバにファイルを落とし、一旦ファイルをオブジェクトにし、加工し、どこかのデータベースにアップロードするまでの一連の作業（巷で言うところの「インタフェース」）について自動化を支援します。
 
 ## CopyRight And CopyLeft
-PowershellはMicrosoft社が開発した言語で、ライセンスはMIT Licenseが適用されています。 
-NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの著作権は中村浩也にあります。 
+PowershellはMicrosoft社が開発した言語で、ライセンスはMIT Licenseが適用されています。  
+NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの著作権は中村浩也にあります。  
 NaughtySlaveは自由ソフトウェアで、ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU") 
 
