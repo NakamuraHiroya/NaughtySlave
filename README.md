@@ -6,7 +6,7 @@ NaughtySlaveは、Powershellで作られた、オフィス業務自動化支援�
 ## 著作権について
 NaughtySlaveの著作権は中村浩也にあります。
 NaughtySlaveは自由ソフトウェアです。ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
-[自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU")
+[自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU" target="_blank")
 
 # コマンドレットの仕様
 ## 共通
@@ -27,9 +27,7 @@ NaughtySlaveは、上述の通り、_DefineSheet.csvと_TicketList.csvファイ�
 つまり、スクリプトレスです。
 
 # QuickStart
-NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？  
-
-<要記載>  
+NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？まずは、
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
@@ -86,7 +84,6 @@ TicketFileを元に、コマンドを実行します。
 
 # Functionの仕様
 NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
-一つ違うのは、その列に対してすべて関数が適応されるという点です。例えば、<要記載>
-
+一つ違うのは、その列に対してすべて関数が適応されるという点です。例えば、
 
 Copyright © 2018- NakamuraHiroya All Rights Reserved.
