@@ -1,11 +1,11 @@
 # NaughtySlave
 NaughtySlaveは、Powershellで書かれた、オフィス業務自動化支援コマンドレット群です。
-統合型問題解決パッケージFunnyFriendsシリーズ(PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlave)の一つです。
+統合型問題解決パッケージFunnyFriendsSeries(*1)の一つです。
 どこかのデータベースからローカルサーバにファイルを落とし、一旦ファイルをオブジェクトにし、加工し、どこかのデータベースにアップロードするまでの一連の作業（巷で言うところの「インタフェース」）について自動化を支援します。
 
 ## CopyRight And CopyLeft
-PowershellはMicrosoft社が開発した言語で、ライセンスはMIT Licenseが適用されています。
-NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの著作権は中村浩也にあります。
+PowershellはMicrosoft社が開発した言語で、ライセンスはMIT Licenseが適用されています。 
+NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの著作権は中村浩也にあります。 
 NaughtySlaveは自由ソフトウェアで、ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU") 
 
@@ -87,6 +87,8 @@ TicketFileを元に、コマンドを実行します。
 # Functionの仕様
 NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。
 一つ違うのは、その列に対してすべて関数が適応されるという点です。
+---
+*1:PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlaveからなるパッケージ。
 
 ---
 
