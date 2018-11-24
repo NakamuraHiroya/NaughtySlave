@@ -9,10 +9,9 @@ NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの�
 NaughtySlaveは自由ソフトウェアで、ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU") 
 
-
-# コマンドレットの仕様
-## 共通
-### Out-GridViewによるナビゲート
+# Spec
+## Common
+### Out-GridViewによるNavigate
 NaughtySlaveに含まれるすべてのコマンドレットは、標準のコマンドレットと違い、オプションを選択しないで実行すると、何をするかをOut-GridViewによりナビゲートします。
 従って、「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
