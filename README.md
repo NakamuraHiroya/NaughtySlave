@@ -30,33 +30,35 @@ NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプ�
 NaughtySlaveは、上述の通り、_DefineSheet.csvと_TicketList.csvファイルを元に動作します。
 つまり、Scriptlessです。また、NaughtySlaveのコマンドは、1ファイル50行未満で書かれています。
 
+## Major Command
+NaughtySlaveの主なコマンドについて解説します。
 
-## 1 Path系
+### C1_PathFamily
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
-### Get-File
+#### Get-File
 
-## 2 File系 
+### C2_FileFamily 
 ファイルに対して処理されるコマンドレット群です。ファイルをテーブル化されたCSVデータにすることを目的とします。
 
-### Convert-XLSFileToCSVFiles
+#### Convert-XLSFileToCSVFiles
 エクセルファイルを、シートの数だけCSVファイルに展開します。
 
-## 3 Data系
+### C3_DataFamily
 3系のコマンドレットは、全てDefineSheetというファイルを元に、CSVファイルを様々な形に加工します。
 NaughtySlaveでは、csvファイルをcustomobjectに変換した状態のものをDataと呼びます。
 
-### Set-Data
+#### Set-Data
 NaughtySlaveでは、メモリ上に一時的に格納された揮発性のDataを保持し、必要に応じて利用します。
 永続的にデータを保存する一般的なデータベースに比べて、柔軟にデータを取り扱うことが出来ます。この簡易データストアはPersonaと呼ばれます。
 Set-Dataコマンドを用いて、Personaにデータを格納します。
 
-### Get-Data
+#### Get-Data
 Personaより必要なデータを取り出す時、Get-Dataコマンドを使います。
 
-### Create-DefineSheet
+#### Create-DefineSheet
 定義シートを作成します。NaughtySlaveでは、作成された定義シートを更新し、別コマンドを実行することにより簡単に自動化を実現します。
 
-### Exe-Funciton
+#### Exe-Funciton
 DefineSheetのFunction列に記入された関数または変数を実行(Invoke)します。
 
 1. グローバル変数
@@ -70,18 +72,20 @@ DefineSheetのFunction列に記入された関数または変数を実行(Invoke
 　NaughtySlaveでは、関数は列に対して適用され、エクセルと同じようにいくつかの関数を用意しています。
 　一つ違うのは、その列に対してすべて関数が適応されるという点です。
 
-## 4 Report系
+### C4_ReportFamily
 4系のコマンドレット群は、レポーティングに特化しています。
 
-### Convert-CSVFilesToXLSFile
+#### Convert-CSVFilesToXLSFile
 複数のCSVファイルをまとめて1つのエクセルファイルのシートにします。
 
-## 5 Exe系
-### Create-Ticket
+### C5_ExeFamily
+5系のコマンドレット群では、実行に特化しています。
+
+#### Create-Ticket
 Ticketを作成します。通常、このコマンドレットは、通常NaughtySlaveコマンドレットのオプションとして実行されます。
 
-### Exe-Ticket
-TicketFileを元に、コマンドを実行します。
+#### Exe-Ticket
+TicketFileを元に、やりたいことを実行します。
 
 ---
 *1:PurpleSpider,InternalBrutus,StrayGoblin,  
