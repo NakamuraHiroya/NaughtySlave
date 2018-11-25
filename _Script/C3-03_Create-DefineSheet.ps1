@@ -14,7 +14,7 @@ if(-not(Test-Path $OutFile)){
 	
 	$i=0
 	
-	$Header|%{$Infile+","+$Header[$i]+","+($i+1)+","+" "+","+((GuessValueType $Sampledata[$i]).gettype().name);$i++}|
+	$Header|%{$Infile+","+$Header[$i]+","+($i+1)+","+" "+","+((Guess-ValueType $Sampledata[$i]).gettype().name);$i++}|
 	Out-file $OutFile -Encoding Default -Append
 }
 
