@@ -9,10 +9,13 @@ NaughtySlaveはPowershellの派生ソフトウェアであり、NaughtySlaveの�
 NaughtySlaveは自由ソフトウェアで、ライセンスはGPLv2を適用しています。自由ソフトウェアについては、リンクをご覧ください。
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU") 
 
+# QuickStart
+NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？<要記載>  
+
 # Spec
 ## Common
 ### Out-GridViewによるNavigate
-NaughtySlaveに含まれるすべてのコマンドレットは、標準のコマンドレットと違い、オプションを選択しないで実行すると、何をするかをOut-GridViewによりナビゲートします。
+NaughtySlaveに含まれるすべてのコマンドレットは、オプションを選択しないで実行すると、何をするかを標準コマンドレットであるOut-GridViewによりナビゲートします。
 従って、「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
 ### 定義書の元ファイル作成
@@ -23,12 +26,10 @@ NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプ�
 このTicketListに記載された内容もまた、誰でもなんとなくどのような動作を意図とした内容かがわかるはずです。
 そして、Exe-Ticketコマンドを実行することによって、簡単に実行を再現することが出来ます。
 
-### スクリプトレス
+### Scriptless
 NaughtySlaveは、上述の通り、_DefineSheet.csvと_TicketList.csvファイルを元に動作します。
-つまり、スクリプトレスです。
+つまり、Scriptlessです。また、NaughtySlaveのコマンドは、1ファイル50行未満で書かれています。
 
-# QuickStart
-NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？まずは、
 
 ## 1 Path系
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
@@ -65,10 +66,9 @@ DefineSheetのFunction列に記入された関数または変数を実行(Invoke
 2. ローカル変数
 　'$_."列名"'と記入することで他の列に入っている値を参照することが可能です。
  
-3. 関数
+3. Function関数
 　NaughtySlaveでは、関数は列に対して適用され、エクセルと同じようにいくつかの関数を用意しています。
- 例：vlookup
- 詳しくは、関数の仕様ページをご覧下さい。
+　一つ違うのは、その列に対してすべて関数が適応されるという点です。
 
 ## 4 Report系
 4系のコマンドレット群は、レポーティングに特化しています。
@@ -83,12 +83,9 @@ Ticketを作成します。通常、このコマンドレットは、通常Naugh
 ### Exe-Ticket
 TicketFileを元に、コマンドを実行します。
 
-# Functionの仕様
-NaughtySlaveでは、関数は、エクセルで使われる関数とほぼ同じ意味で使います。  
-一つ違うのは、その列に対してすべて関数が適応されるという点です。
-
 ---
-*1:PurpleSpider,InternalBrutus,StrayGoblin,RunawayChariot,NaughtySlaveからなるパッケージ。
+*1:PurpleSpider,InternalBrutus,StrayGoblin,  
+  RunawayChariot,NaughtySlaveからなるパッケージ。
 
 ---
 
