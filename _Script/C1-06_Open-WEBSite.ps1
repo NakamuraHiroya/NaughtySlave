@@ -6,7 +6,7 @@ param(
 	$Ticket
 )
 begin{
-	push $WorkDir
+	pushd $WorkDir
 	$ie=New-Object -ComObject InternetExplorer.Application
 	$ie.Visible = $true
 	}
