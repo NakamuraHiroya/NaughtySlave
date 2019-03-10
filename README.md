@@ -10,7 +10,7 @@ NaughtySlaveは自由ソフトウェアで、ライセンスはGPLv2を適用し
 [自由ソフトウェア](https://www.gnu.org/philosophy/free-sw.ja.html "GNU") 
 
 # QuickStart
-NaughtySlaveを使うにあたって、最低限何をすれば良いのでしょうか？<要記載>  
+NaughtySlaveを使うにあたって、最低限しないといけないことは、Powershellのverを3.0以上に上げて、execpolicyを実行出来るやつに変えて、後はMicrosoft社のExcelを使えるようにしてcom-object作れるようにすればいけると思います。
 
 # Spec
 ## Common
@@ -18,20 +18,20 @@ NaughtySlaveを使うにあたって、最低限何をすれば良いのでし�
 NaughtySlaveに含まれるすべてのコマンドレットは、オプションを選択しないで実行すると、何をするかを標準コマンドレットであるOut-GridViewによりナビゲートします。
 従って、「とりあえずコマンドを実行する」ことで、動作が学習出来ます。
 
-### 定義書の元ファイル作成
-NaughtySlaveでは、Create-DefineSheetコマンドで定義書の元となるCSVファイル、_DefineSheet.csvを作成します。このCSVファイルをエクセルやエディタで開き、更新し、やりたいことを定義します。この定義書は難解な書かれ方をされておらず、誰でもなんとなくどのように動作するかがわかるようになっています。
-
 ### TicketListによる再現
 NaughtySlaveでは、全てのコマンドレットについて、-Ticketオプションをつけて実行することにより、自動的にCSVファイル_TicketList.csvを作成します。  
 このTicketListに記載された内容もまた、誰でもなんとなくどのような動作を意図とした内容かがわかるはずです。
 そして、Exe-Ticketコマンドを実行することによって、簡単に実行を再現することが出来ます。
+
+### 定義書の元ファイル作成
+NaughtySlaveでは、C3系のコマンドレット群では、DefineSheetを使います。Create-DefineSheetコマンドで定義書の元となるCSVファイル_DefineSheet.csvを作成して、このCSVファイルをエクセルやエディタで開き、更新し、やりたいことを定義します。この定義書は難解な書かれ方をされておらず、誰でもなんとなくどのように動作するかがわかるようになっています。
 
 ### Scriptless
 NaughtySlaveは、上述の通り、_DefineSheet.csvと_TicketList.csvファイルを元に動作します。
 つまり、Scriptlessです。また、NaughtySlaveのコマンドは、1ファイル50行未満で書かれています。
 
 ## Major Command
-NaughtySlaveの主なコマンドについて解説します。
+NaughtySlaveの主なコマンドについて解説します。書きかけですが、大体の流れをつかんでもらうのが目的なので完成です。後は、皆さん自身で、使い方を覚えていって下さい。（雑）
 
 ### C1_PathFamily
 ファイル自体をコピーしたり移動したりすることを目的としたコマンドレット群です。
