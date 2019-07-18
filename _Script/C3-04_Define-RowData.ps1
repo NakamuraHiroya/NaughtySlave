@@ -9,7 +9,7 @@ param(
 	$Ticket
 )
 begin{
-	pushd $WorkDir
+	if(Test-Path $WorkDir){pushd $WorkDir}else{$WorkDir+" PATH FAULT!!!";$WorkDir=$((pwd).path);pushd $WorkDir}
 	}
 process{
 	$PropertyInfo_OrderList=ipcsv $DefineSheet -encoding default|?{$_.Order}|sort{$_.Order -as [int]}|%{$_.Property}

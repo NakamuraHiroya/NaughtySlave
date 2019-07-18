@@ -9,7 +9,7 @@ param(
 	$Ticket
 )
 begin{
-	pushd $WorkDir
+	if(Test-Path $WorkDir){pushd $WorkDir}else{$WorkDir+" PATH FAULT!!!";$WorkDir=$((pwd).path);pushd $WorkDir}
 	}
 process{
 	# yz‚â[]‚â/‚ğ•ÏŠ·‚µ‚È‚¢‚Æƒ_ƒI
