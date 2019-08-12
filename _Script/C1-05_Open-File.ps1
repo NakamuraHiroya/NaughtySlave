@@ -16,6 +16,12 @@ xlsx{
 	$excel.DisplayAlerts = $false
 	$book = $excel.Workbooks.Open((Convert-path $InFile))
 }
+xlsm{
+	$excel = New-Object -ComObject Excel.Application
+	$excel.Visible = $true
+	$excel.DisplayAlerts = $false
+	$book = $excel.Workbooks.Open((Convert-path $InFile))
+}
 xls{
 	$excel = New-Object -ComObject Excel.Application
 	$excel.Visible = $true
